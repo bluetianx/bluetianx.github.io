@@ -5,18 +5,20 @@
   
 
   
-  <title>Hello,晓青</title>
+  <title>深入理解Aspnet Core之Identity(3) | Hello,晓青</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="寻访不觉醉流霞">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hello,晓青">
-<meta property="og:url" content="https://github.com/bluetianx/index.html">
+  <meta name="description" content="主题 账户管理一个比较常见的功能就是密码强度策略，Identity已经内置了一个通用的可配置的策略，我们一般情况下可以直接拿来用即可。本篇我会介绍一些Identity内置的密码策略类：PasswordValidator，并且简单介绍一下源码。最好我们还会自定义一个密码策略类的实现。  密码强度配置我们需要在startup类里面配置，密码强度策略。代码如下1234567891011121314151">
+<meta name="keywords" content="Asp.net core Identity">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解Aspnet Core之Identity(3)">
+<meta property="og:url" content="https://github.com/bluetianx/2018/04/07/Identity3/index.html">
 <meta property="og:site_name" content="Hello,晓青">
-<meta property="og:description" content="寻访不觉醉流霞">
+<meta property="og:description" content="主题 账户管理一个比较常见的功能就是密码强度策略，Identity已经内置了一个通用的可配置的策略，我们一般情况下可以直接拿来用即可。本篇我会介绍一些Identity内置的密码策略类：PasswordValidator，并且简单介绍一下源码。最好我们还会自定义一个密码策略类的实现。  密码强度配置我们需要在startup类里面配置，密码强度策略。代码如下1234567891011121314151">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-07T08:55:39.887Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello,晓青">
-<meta name="twitter:description" content="寻访不觉醉流霞">
+<meta name="twitter:title" content="深入理解Aspnet Core之Identity(3)">
+<meta name="twitter:description" content="主题 账户管理一个比较常见的功能就是密码强度策略，Identity已经内置了一个通用的可配置的策略，我们一般情况下可以直接拿来用即可。本篇我会介绍一些Identity内置的密码策略类：PasswordValidator，并且简单介绍一下源码。最好我们还会自定义一个密码策略类的实现。  密码强度配置我们需要在startup类里面配置，密码强度策略。代码如下1234567891011121314151">
   
   
     <link rel="icon" href="/favicon.png">
@@ -65,9 +67,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Identity3" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Identity3" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/07/Identity3/" class="article-date">
   <time datetime="2018-04-07T06:53:41.000Z" itemprop="datePublished">2018-04-07</time>
@@ -84,8 +84,8 @@
         <header class="article-header">
           
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/07/Identity3/">深入理解Aspnet Core之Identity(3)</a>
+    <h1 class="article-title" itemprop="name">
+      深入理解Aspnet Core之Identity(3)
     </h1>
   
 
@@ -162,66 +162,19 @@
           </footer>
   </div>
   
-</article>
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/04/hello-world/" class="article-date">
-  <time datetime="2018-04-04T12:05:28.991Z" itemprop="datePublished">2018-04-04</time>
-</a>
-      
-  </div>
-  <div class="article-inner">
     
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/04/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
       
-        <header class="article-header">
-          
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/04/hello-world/">Hello World</a>
-    </h1>
-  
-
-        </header>
-        
-          <div class="article-entry" itemprop="articleBody">
-            
-                      <h2 id="Welcome-This-is-My-very-first-post"><a href="#Welcome-This-is-My-very-first-post" class="headerlink" title="Welcome ! This is My very first post."></a>Welcome ! This is My very first post.</h2><h3 id="你好，晓青！与君初相识，犹如故人归"><a href="#你好，晓青！与君初相识，犹如故人归" class="headerlink" title="你好，晓青！与君初相识，犹如故人归"></a>你好，晓青！与君初相识，犹如故人归</h3>
-                        
-          </div>
-          <footer class="article-footer">
-            <a data-url="https://github.com/bluetianx/2018/04/04/hello-world/" data-id="cjfp5a4fr0002uhs66lawm2rg" class="article-share-link">
-              Share
-            </a>
-            
-                <!-- 来必力City版安装代码 -->
-                <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTUyMS8xMjA1Nw==">
-                  <script type="text/javascript">
-                    (function (d, s) {
-                      var j, e = d.getElementsByTagName(s)[0];
-
-                      if (typeof LivereTower === 'function') { return; }
-
-                      j = d.createElement(s);
-                      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-                      j.async = true;
-
-                      e.parentNode.insertBefore(j, e);
-                    })(document, 'script');
-                  </script>
-                  <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
-                </div>
-                <!-- City版安装代码已完成 -->
-                
-          </footer>
-  </div>
-  
 </article>
-
-  
-
-
 </section>
         
           <aside id="sidebar">
