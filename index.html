@@ -1,324 +1,498 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hans">
 <head>
-  <meta charset="utf-8">
-  
 
-  
-  <title>Hello,晓青</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="寻访不觉醉流霞">
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Hello,晓青" />
+
+
+    
+    
+
+
+<meta name="description" content="寻访不觉醉流霞">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Hello,晓青">
 <meta property="og:url" content="https://github.com/bluetianx/index.html">
 <meta property="og:site_name" content="Hello,晓青">
 <meta property="og:description" content="寻访不觉醉流霞">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hello,晓青">
 <meta name="twitter:description" content="寻访不觉醉流霞">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-</head>
 
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Hello,晓青" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <style> .article { opacity: 0;} </style>
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Hello,晓青</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: true,
+        isPost: false,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
 <body>
   <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hello,晓青</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">我思故我在</a>
-        </h2>
-      
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar2.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Hello,晓青</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">我思故我在</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/2018/04/04/hello-world/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:brucetianx@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/bluetianx" title="GitHub"></a>
+                            
+                                <a class="fa 博客园" href="http://www.cnblogs.com/blue-tian" title="博客园"></a>
+                            
+                                <a class="fa 网易云音乐" href="https://music.163.com/#/user/home?id=9243600" title="网易云音乐"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Asp-net-core-Identity/">Asp.net core Identity</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="https://github.com/bluetianx">Github</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/bluetianx"></form>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Hello,晓青</a></h1>
       </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar2.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Hello,晓青</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">我思故我在</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/2018/04/04/hello-world/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:brucetianx@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/bluetianx" title="GitHub"></a>
+                            
+                                <a class="fa 博客园" target="_blank" href="http://www.cnblogs.com/blue-tian" title="博客园"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="https://music.163.com/#/user/home?id=9243600" title="网易云音乐"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
     </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap">
   
     <article id="post-Identity3" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/07/Identity3/" class="article-date">
-  <time datetime="2018-04-07T06:53:41.000Z" itemprop="datePublished">2018-04-07</time>
+  
+    <div class="article-meta">
+      <a href="/2018/04/07/Identity3/" class="article-date">
+      <time datetime="2018-04-07T06:53:41.000Z" itemprop="datePublished">2018-04-07</time>
 </a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Asp-net-Core/">Asp.net Core</a>
-  </div>
 
-  </div>
+
+    </div>
+  
   <div class="article-inner">
     
-      
-        <header class="article-header">
-          
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
       <a class="article-title" href="/2018/04/07/Identity3/">深入理解Aspnet Core之Identity(3)</a>
     </h1>
   
 
-        </header>
-        
-          <div class="article-entry" itemprop="articleBody">
-            
-                      <h3 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h3><p> 账户管理一个比较常见的功能就是密码强度策略，Identity已经内置了一个通用的可配置的策略，我们一般情况下可以直接拿来用即可。本篇我会介绍一些<br>Identity内置的密码策略类：PasswordValidator，并且简单介绍一下源码。最好我们还会自定义一个密码策略类的实现。</p>
-<hr>
-<h3 id="密码强度配置"><a href="#密码强度配置" class="headerlink" title="密码强度配置"></a>密码强度配置</h3><p>我们需要在startup类里面配置，密码强度策略。代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public void ConfigureServices(IServiceCollection services)</span><br><span class="line">        &#123;</span><br><span class="line">            services.AddDbContext&lt;AppIdentityDbContext&gt;(options =&gt;</span><br><span class="line">                options.UseSqlServer(</span><br><span class="line">                    Configuration[&quot;Data:AppStoreIdentity:ConnectionString&quot;]));</span><br><span class="line">            //配置密码强度</span><br><span class="line">            services.AddIdentity&lt;AppUser, IdentityRole&gt;(opts =&gt; &#123;</span><br><span class="line">                    opts.Password.RequiredLength = 6;</span><br><span class="line">                    opts.Password.RequireNonAlphanumeric = false;</span><br><span class="line">                    opts.Password.RequireLowercase = false;</span><br><span class="line">                    opts.Password.RequireUppercase = false;</span><br><span class="line">                    opts.Password.RequireDigit = false;</span><br><span class="line">                &#125;).AddEntityFrameworkStores&lt;AppIdentityDbContext&gt;()</span><br><span class="line">                .AddDefaultTokenProviders();</span><br><span class="line">            services.AddMvc();</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-<p>这个 AddIdentity 方法接受一个 IdentityOptions 对象参数，这个对象包含了所有能用于配置Identity系统的配置项，其中就包含了密码强度的配置。PassWord属性包含了可用于密码强度的配置项，其中包括：</p>
-<ul>
-<li>RequiredLength ：这个属性用于指明密码的最小长度，类型 int</li>
-<li>RequireNonAlphanumeric ：类型：bool，true代表密码至少包含一个非字母或者数字的字符，比如 ！@#</li>
-<li>RequireLowercase ：类型bool，true代表密码至少包含一个小写字母</li>
-<li>RequireUppercase ：类型 bool，true 代表密码至少包含一个大写字母</li>
-<li>RequireDigit ：类型 bool，true 代表密码至少包含一个数字<br>这里我配置的密码强度是不少于六位的字符即可。<h3 id="IdentityOptions-类可用于配置的属性"><a href="#IdentityOptions-类可用于配置的属性" class="headerlink" title="IdentityOptions 类可用于配置的属性"></a>IdentityOptions 类可用于配置的属性</h3>在这里我们把IdentityOptions对应的源代码展现给大家，让大家了解一下哪些可用于配置Identity，<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt;</span><br><span class="line">    /// Represents all the options you can use to configure the identity system.</span><br><span class="line">    /// &lt;/summary&gt;</span><br><span class="line">    public class IdentityOptions</span><br><span class="line">    &#123;</span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// Gets or sets the &lt;see cref=&quot;ClaimsIdentityOptions&quot;/&gt; for the identity system.</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;value&gt;</span><br><span class="line">        /// The &lt;see cref=&quot;ClaimsIdentityOptions&quot;/&gt; for the identity system.</span><br><span class="line">        /// &lt;/value&gt;</span><br><span class="line">        public ClaimsIdentityOptions ClaimsIdentity &#123; get; set; &#125; = new ClaimsIdentityOptions();</span><br><span class="line"></span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// Gets or sets the &lt;see cref=&quot;UserOptions&quot;/&gt; for the identity system.</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;value&gt;</span><br><span class="line">        /// The &lt;see cref=&quot;UserOptions&quot;/&gt; for the identity system.</span><br><span class="line">        /// &lt;/value&gt;</span><br><span class="line">        public UserOptions User &#123; get; set; &#125; = new UserOptions();</span><br><span class="line"></span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// Gets or sets the &lt;see cref=&quot;PasswordOptions&quot;/&gt; for the identity system.</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;value&gt;</span><br><span class="line">        /// The &lt;see cref=&quot;PasswordOptions&quot;/&gt; for the identity system.</span><br><span class="line">        /// &lt;/value&gt;</span><br><span class="line">        public PasswordOptions Password &#123; get; set; &#125; = new PasswordOptions();</span><br><span class="line"></span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// Gets or sets the &lt;see cref=&quot;LockoutOptions&quot;/&gt; for the identity system.</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;value&gt;</span><br><span class="line">        /// The &lt;see cref=&quot;LockoutOptions&quot;/&gt; for the identity system.</span><br><span class="line">        /// &lt;/value&gt;</span><br><span class="line">        public LockoutOptions Lockout &#123; get; set; &#125; = new LockoutOptions();</span><br><span class="line"></span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// Gets or sets the &lt;see cref=&quot;SignInOptions&quot;/&gt; for the identity system.</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;value&gt;</span><br><span class="line">        /// The &lt;see cref=&quot;SignInOptions&quot;/&gt; for the identity system.</span><br><span class="line">        /// &lt;/value&gt;</span><br><span class="line">        public SignInOptions SignIn &#123; get; set; &#125; = new SignInOptions();</span><br><span class="line"></span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// Gets or sets the &lt;see cref=&quot;TokenOptions&quot;/&gt; for the identity system.</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;value&gt;</span><br><span class="line">        /// The &lt;see cref=&quot;TokenOptions&quot;/&gt; for the identity system.</span><br><span class="line">        /// &lt;/value&gt;</span><br><span class="line">        public TokenOptions Tokens &#123; get; set; &#125; = new TokenOptions();</span><br><span class="line"></span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// Gets or sets the &lt;see cref=&quot;StoreOptions&quot;/&gt; for the identity system.</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;value&gt;</span><br><span class="line">        /// The &lt;see cref=&quot;StoreOptions&quot;/&gt; for the identity system.</span><br><span class="line">        /// &lt;/value&gt;</span><br><span class="line">        public StoreOptions Stores &#123; get; set; &#125; = new StoreOptions();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>我们除了可以用 IdentityOptions 配置密码策略，还可以用于配置 持久化配置StoreOptions，令牌配置TokenOption等；</p>
-<hr>
-<h3 id="自定义实现IPasswordValidator"><a href="#自定义实现IPasswordValidator" class="headerlink" title="自定义实现IPasswordValidator"></a>自定义实现IPasswordValidator</h3><ul>
-<li>我们首先看一下 IPasswordValidator 接口的定义；</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// Copyright (c) .NET Foundation. All rights reserved.</span><br><span class="line">// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.</span><br><span class="line"></span><br><span class="line">using System.Threading;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace Microsoft.AspNetCore.Identity</span><br><span class="line">&#123;</span><br><span class="line">    /// &lt;summary&gt;</span><br><span class="line">    /// Provides an abstraction for validating passwords.</span><br><span class="line">    /// &lt;/summary&gt;</span><br><span class="line">    /// &lt;typeparam name=&quot;TUser&quot;&gt;The type that represents a user.&lt;/typeparam&gt;</span><br><span class="line">    public interface IPasswordValidator&lt;TUser&gt; where TUser : class</span><br><span class="line">    &#123;</span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// Validates a password as an asynchronous operation.</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;param name=&quot;manager&quot;&gt;The &lt;see cref=&quot;UserManager&#123;TUser&#125;&quot;/&gt; to retrieve the &lt;paramref name=&quot;user&quot;/&gt; properties from.&lt;/param&gt;</span><br><span class="line">        /// &lt;param name=&quot;user&quot;&gt;The user whose password should be validated.&lt;/param&gt;</span><br><span class="line">        /// &lt;param name=&quot;password&quot;&gt;The password supplied for validation&lt;/param&gt;</span><br><span class="line">        /// &lt;returns&gt;The task object representing the asynchronous operation.&lt;/returns&gt;</span><br><span class="line">        Task&lt;IdentityResult&gt; ValidateAsync(UserManager&lt;TUser&gt; manager, TUser user, string password);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个接口接受一个泛型T，这个T是应用指定的用户类User，这里我们是 AppUser类。这个接口包含类一个方法 ValidateAsync，这是一个异步方法，用于验证密码是否符合策略。这个方法返回 IdentityResult 类，假如验证没有问题，你可以用静态的IdentityResult.Success属性返回该对象，反之，用Failed静态属性返回。</p>
-<ul>
-<li>现在我们去了解一下IPasswordValidator接口的默认实现，先附上源代码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line">// Copyright (c) .NET Foundation. All rights reserved.</span><br><span class="line">// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.</span><br><span class="line"></span><br><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace Microsoft.AspNetCore.Identity</span><br><span class="line">&#123;</span><br><span class="line">    /// &lt;summary&gt;</span><br><span class="line">    /// Provides the default password policy for Identity.</span><br><span class="line">    /// &lt;/summary&gt;</span><br><span class="line">    /// &lt;typeparam name=&quot;TUser&quot;&gt;The type that represents a user.&lt;/typeparam&gt;</span><br><span class="line">    public class PasswordValidator&lt;TUser&gt; : IPasswordValidator&lt;TUser&gt; where TUser : class</span><br><span class="line">    &#123;</span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// Constructions a new instance of &lt;see cref=&quot;PasswordValidator&#123;TUser&#125;&quot;/&gt;.</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;param name=&quot;errors&quot;&gt;The &lt;see cref=&quot;IdentityErrorDescriber&quot;/&gt; to retrieve error text from.&lt;/param&gt;</span><br><span class="line">        public PasswordValidator(IdentityErrorDescriber errors = null)</span><br><span class="line">        &#123;</span><br><span class="line">            Describer = errors ?? new IdentityErrorDescriber();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// Gets the &lt;see cref=&quot;IdentityErrorDescriber&quot;/&gt; used to supply error text.</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;value&gt;The &lt;see cref=&quot;IdentityErrorDescriber&quot;/&gt; used to supply error text.&lt;/value&gt;</span><br><span class="line">        public IdentityErrorDescriber Describer &#123; get; private set; &#125;</span><br><span class="line"></span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// Validates a password as an asynchronous operation.</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;param name=&quot;manager&quot;&gt;The &lt;see cref=&quot;UserManager&#123;TUser&#125;&quot;/&gt; to retrieve the &lt;paramref name=&quot;user&quot;/&gt; properties from.&lt;/param&gt;</span><br><span class="line">        /// &lt;param name=&quot;user&quot;&gt;The user whose password should be validated.&lt;/param&gt;</span><br><span class="line">        /// &lt;param name=&quot;password&quot;&gt;The password supplied for validation&lt;/param&gt;</span><br><span class="line">        /// &lt;returns&gt;The task object representing the asynchronous operation.&lt;/returns&gt;</span><br><span class="line">        public virtual Task&lt;IdentityResult&gt; ValidateAsync(UserManager&lt;TUser&gt; manager, TUser user, string password)</span><br><span class="line">        &#123;</span><br><span class="line">            if (password == null)</span><br><span class="line">            &#123;</span><br><span class="line">                throw new ArgumentNullException(nameof(password));</span><br><span class="line">            &#125;</span><br><span class="line">            if (manager == null)</span><br><span class="line">            &#123;</span><br><span class="line">                throw new ArgumentNullException(nameof(manager));</span><br><span class="line">            &#125;</span><br><span class="line">            var errors = new List&lt;IdentityError&gt;();</span><br><span class="line">            var options = manager.Options.Password;</span><br><span class="line">            if (string.IsNullOrWhiteSpace(password) || password.Length &lt; options.RequiredLength)</span><br><span class="line">            &#123;</span><br><span class="line">                errors.Add(Describer.PasswordTooShort(options.RequiredLength));</span><br><span class="line">            &#125;</span><br><span class="line">            if (options.RequireNonAlphanumeric &amp;&amp; password.All(IsLetterOrDigit))</span><br><span class="line">            &#123;</span><br><span class="line">                errors.Add(Describer.PasswordRequiresNonAlphanumeric());</span><br><span class="line">            &#125;</span><br><span class="line">            if (options.RequireDigit &amp;&amp; !password.Any(IsDigit))</span><br><span class="line">            &#123;</span><br><span class="line">                errors.Add(Describer.PasswordRequiresDigit());</span><br><span class="line">            &#125;</span><br><span class="line">            if (options.RequireLowercase &amp;&amp; !password.Any(IsLower))</span><br><span class="line">            &#123;</span><br><span class="line">                errors.Add(Describer.PasswordRequiresLower());</span><br><span class="line">            &#125;</span><br><span class="line">            if (options.RequireUppercase &amp;&amp; !password.Any(IsUpper))</span><br><span class="line">            &#123;</span><br><span class="line">                errors.Add(Describer.PasswordRequiresUpper());</span><br><span class="line">            &#125;</span><br><span class="line">            if (options.RequiredUniqueChars &gt;= 1 &amp;&amp; password.Distinct().Count() &lt; options.RequiredUniqueChars)</span><br><span class="line">            &#123;</span><br><span class="line">                errors.Add(Describer.PasswordRequiresUniqueChars(options.RequiredUniqueChars));</span><br><span class="line">            &#125;</span><br><span class="line">            return</span><br><span class="line">                Task.FromResult(errors.Count == 0</span><br><span class="line">                    ? IdentityResult.Success</span><br><span class="line">                    : IdentityResult.Failed(errors.ToArray()));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// Returns a flag indicating whether the supplied character is a digit.</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;param name=&quot;c&quot;&gt;The character to check if it is a digit.&lt;/param&gt;</span><br><span class="line">        /// &lt;returns&gt;True if the character is a digit, otherwise false.&lt;/returns&gt;</span><br><span class="line">        public virtual bool IsDigit(char c)</span><br><span class="line">        &#123;</span><br><span class="line">            return c &gt;= &apos;0&apos; &amp;&amp; c &lt;= &apos;9&apos;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// Returns a flag indicating whether the supplied character is a lower case ASCII letter.</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;param name=&quot;c&quot;&gt;The character to check if it is a lower case ASCII letter.&lt;/param&gt;</span><br><span class="line">        /// &lt;returns&gt;True if the character is a lower case ASCII letter, otherwise false.&lt;/returns&gt;</span><br><span class="line">        public virtual bool IsLower(char c)</span><br><span class="line">        &#123;</span><br><span class="line">            return c &gt;= &apos;a&apos; &amp;&amp; c &lt;= &apos;z&apos;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// Returns a flag indicating whether the supplied character is an upper case ASCII letter.</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;param name=&quot;c&quot;&gt;The character to check if it is an upper case ASCII letter.&lt;/param&gt;</span><br><span class="line">        /// &lt;returns&gt;True if the character is an upper case ASCII letter, otherwise false.&lt;/returns&gt;</span><br><span class="line">        public virtual bool IsUpper(char c)</span><br><span class="line">        &#123;</span><br><span class="line">            return c &gt;= &apos;A&apos; &amp;&amp; c &lt;= &apos;Z&apos;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// Returns a flag indicating whether the supplied character is an ASCII letter or digit.</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;param name=&quot;c&quot;&gt;The character to check if it is an ASCII letter or digit.&lt;/param&gt;</span><br><span class="line">        /// &lt;returns&gt;True if the character is an ASCII letter or digit, otherwise false.&lt;/returns&gt;</span><br><span class="line">        public virtual bool IsLetterOrDigit(char c)</span><br><span class="line">        &#123;</span><br><span class="line">            return IsUpper(c) || IsLower(c) || IsDigit(c);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>默认的实现类，除了实现了ValidateAsync方法，还有IsDigit IsLower等方法，他们对应了密码配置的属性，比如是否小写，是否大写等等…密码验证方法里面主要根据应用设置的密码强度属性来进行一次判断，代码比较好理解。</p>
-<hr>
-<h3 id="自定义实现密码强度验证"><a href="#自定义实现密码强度验证" class="headerlink" title="自定义实现密码强度验证"></a>自定义实现密码强度验证</h3><p>虽然内置的密码验证已经满足了大部分应用场景，但有的时候我们还是需要自定义实现一个满足自身业务需求的密码验证类。这里我给大家演示一下怎么去自定义个密码验证类去满足令人头疼业务需求。假设我们有这样一个业务需求：</p>
-<ul>
-<li>要求密码不能包含敏感字符：china<br>1.首先在项目中创建一个Infrastructure 文件夹，在该文件夹添加一个CustomPasswordValidator类，代码如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">namespace DemoUser.Infrastructure</span><br><span class="line">&#123;</span><br><span class="line">    public class CustomPasswordValidator : PasswordValidator&lt;AppUser&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        public override async Task&lt;IdentityResult&gt; ValidateAsync(</span><br><span class="line">            UserManager&lt;AppUser&gt; manager, AppUser user, string password)</span><br><span class="line">        &#123;</span><br><span class="line">            IdentityResult result = await base.ValidateAsync(manager,</span><br><span class="line">                user, password);</span><br><span class="line">            List&lt;IdentityError&gt; errors = result.Succeeded ? new List&lt;IdentityError&gt;() : result.Errors.ToList();</span><br><span class="line"></span><br><span class="line">            if (password.Contains(&quot;china&quot;))</span><br><span class="line">            &#123;</span><br><span class="line">                errors.Add(new IdentityError</span><br><span class="line">                &#123;</span><br><span class="line">                    Code = &quot;PasswordContainsillegalletter&quot;,</span><br><span class="line">                    Description = &quot;Password cannot contain china&quot;</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            return errors.Count == 0</span><br><span class="line">                ? IdentityResult.Success</span><br><span class="line">                : IdentityResult.Failed(errors.ToArray());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>2.再次我们需要在startup类里面把我们自定义的密码验证类依赖注入到应用中，代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public void ConfigureServices(IServiceCollection services)</span><br><span class="line">        &#123;</span><br><span class="line">            //注入自定义密码验证类</span><br><span class="line">            services.AddTransient&lt;IPasswordValidator&lt;AppUser&gt;,</span><br><span class="line">                CustomPasswordValidator&gt;();</span><br><span class="line">            </span><br><span class="line">            services.AddDbContext&lt;AppIdentityDbContext&gt;(options =&gt;</span><br><span class="line">                options.UseSqlServer(</span><br><span class="line">                    Configuration[&quot;Data:AppStoreIdentity:ConnectionString&quot;]));</span><br><span class="line">            //配置密码强度</span><br><span class="line">            services.AddIdentity&lt;AppUser, IdentityRole&gt;(opts =&gt; &#123;</span><br><span class="line">                    opts.Password.RequiredLength = 6;</span><br><span class="line">                    opts.Password.RequireNonAlphanumeric = false;</span><br><span class="line">                    opts.Password.RequireLowercase = false;</span><br><span class="line">                    opts.Password.RequireUppercase = false;</span><br><span class="line">                    opts.Password.RequireDigit = false;</span><br><span class="line">                &#125;).AddEntityFrameworkStores&lt;AppIdentityDbContext&gt;()</span><br><span class="line">                .AddDefaultTokenProviders();</span><br><span class="line">            services.AddMvc();</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>这样我们的自定义的密码验证类就成功替换掉了内置的密码验证类。</li>
-</ul>
-<hr>
-<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>简单介绍了IPasswordValidator的配置和简单自定义，下一篇我打算讲解一下Identity架构的设计，以及我们可以自定义的地方有哪些。<br>代码对应的地址 <a href="https://github.com/bluetianx/AspnetCoreExample">github</a> 对应分支f3</p>
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              账户管理一个比较常见的功能就是密码强度策略，Identity已经内置了一个通用的可配置的策略，我们一般情况下可以直接拿来用即可。本篇我会介绍一些 Identity内置的密码策略类：PasswordValidator，并且简单介绍一下源码。最好我们还会自定义一个密码策略类的实现。
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Asp-net-Core/">Asp.net Core</a>
+    </div>
 
-                        
-          </div>
-          <footer class="article-footer">
-            <a data-url="https://github.com/bluetianx/2018/04/07/Identity3/" data-id="cjfp5a4fl0000uhs6vii28262" class="article-share-link">
-              Share
-            </a>
-            
-                <!-- 来必力City版安装代码 -->
-                <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTUyMS8xMjA1Nw==">
-                  <script type="text/javascript">
-                    (function (d, s) {
-                      var j, e = d.getElementsByTagName(s)[0];
 
-                      if (typeof LivereTower === 'function') { return; }
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Asp-net-core-Identity/">Asp.net core Identity</a></li></ul>
+    </div>
 
-                      j = d.createElement(s);
-                      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-                      j.async = true;
-
-                      e.parentNode.insertBefore(j, e);
-                    })(document, 'script');
-                  </script>
-                  <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
-                </div>
-                <!-- City版安装代码已完成 -->
-                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Asp-net-core-Identity/">Asp.net core Identity</a></li></ul>
-
-          </footer>
+      
+        <p class="article-more-link">
+          <a href="/2018/04/07/Identity3/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
   
 </article>
 
+
+
+
+
+
+
+
+
   
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/04/hello-world/" class="article-date">
-  <time datetime="2018-04-04T12:05:28.991Z" itemprop="datePublished">2018-04-04</time>
+  
+    <div class="article-meta">
+      <a href="/2018/04/04/hello-world/" class="article-date">
+      <time datetime="2018-04-04T12:05:28.991Z" itemprop="datePublished">2018-04-04</time>
 </a>
-      
-  </div>
+
+
+    </div>
+  
   <div class="article-inner">
     
-      
-        <header class="article-header">
-          
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
       <a class="article-title" href="/2018/04/04/hello-world/">Hello World</a>
     </h1>
   
 
-        </header>
-        
-          <div class="article-entry" itemprop="articleBody">
-            
-                      <h2 id="Welcome-This-is-My-very-first-post"><a href="#Welcome-This-is-My-very-first-post" class="headerlink" title="Welcome ! This is My very first post."></a>Welcome ! This is My very first post.</h2><h3 id="你好，晓青！与君初相识，犹如故人归"><a href="#你好，晓青！与君初相识，犹如故人归" class="headerlink" title="你好，晓青！与君初相识，犹如故人归"></a>你好，晓青！与君初相识，犹如故人归</h3>
-                        
-          </div>
-          <footer class="article-footer">
-            <a data-url="https://github.com/bluetianx/2018/04/04/hello-world/" data-id="cjfp5a4fr0002uhs66lawm2rg" class="article-share-link">
-              Share
-            </a>
-            
-                <!-- 来必力City版安装代码 -->
-                <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTUyMS8xMjA1Nw==">
-                  <script type="text/javascript">
-                    (function (d, s) {
-                      var j, e = d.getElementsByTagName(s)[0];
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              你好，晓青！与君初相识，犹如故人归
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
 
-                      if (typeof LivereTower === 'function') { return; }
-
-                      j = d.createElement(s);
-                      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-                      j.async = true;
-
-                      e.parentNode.insertBefore(j, e);
-                    })(document, 'script');
-                  </script>
-                  <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
-                </div>
-                <!-- City版安装代码已完成 -->
-                
-          </footer>
+      
+      
+        <p class="article-more-link">
+          <a href="/2018/04/04/hello-world/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
   
 </article>
 
-  
 
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2018/04/07/Identity3/">深入理解Aspnet Core之Identity(3)</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/04/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Asp-net-Core/">Asp.net Core</a></li></ul>
-    </div>
-  </div>
+
+
+
 
 
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Asp-net-core-Identity/">Asp.net core Identity</a></li></ul>
-    </div>
-  </div>
-
-
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Asp-net-core-Identity/" style="font-size: 10px;">Asp.net core Identity</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
-        
-      </div>
+</div>
       <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2018 Bruce Tian<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2018 Hello,晓青
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
     </div>
-  </div>
 </footer>
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="https://github.com/bluetianx" class="mobile-nav-link">Github</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
     
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 4;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
 
 
 
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
   </div>
 </body>
 </html>
