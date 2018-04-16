@@ -23,12 +23,12 @@
 <meta property="og:site_name" content="Hello,晓青">
 <meta property="og:description" content="之前简单介绍了Asp.net core 的初步的使用，本篇我打算给大家介绍一下Identity的架构，让大家对Identity有一个总体的理解和认识。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/bluetianx/2018/04/16/Identity4/Identity4/arc.png">
-<meta property="og:updated_time" content="2018-04-16T09:24:53.622Z">
+<meta property="og:image" content="https://github.com/bluetianx/2018/04/16/Identity4/arc.png">
+<meta property="og:updated_time" content="2018-04-16T09:44:18.418Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解Aspnet Core之Identity(4)">
 <meta name="twitter:description" content="之前简单介绍了Asp.net core 的初步的使用，本篇我打算给大家介绍一下Identity的架构，让大家对Identity有一个总体的理解和认识。">
-<meta name="twitter:image" content="https://github.com/bluetianx/2018/04/16/Identity4/Identity4/arc.png">
+<meta name="twitter:image" content="https://github.com/bluetianx/2018/04/16/Identity4/arc.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -321,7 +321,7 @@
           
         <h3 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h3><pre><code>之前简单介绍了Asp.net core 的初步的使用，本篇我打算给大家介绍一下Identity的架构，让大家对Identity有一个总体的理解和认识。
 </code></pre><hr>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Identity的基本的架构图如下：<br><img src="Identity4/arc.png" alt="avatar"></p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Identity的基本的架构图如下：<br><img src="arc.png" alt="avatar"></p>
 <ul>
 <li>Asp.net core Identity 是由一系列名为managers 和 stores 类组成的。manager层是主要identity架构的最高层，开发者主要在应用开发中用来对Identity User 进行管理，比如CRUD等操作。Stores 层相对于manager层在架构图中属于较低层次的类，主要用于持久化 用户（user）、角色（role）等信息，同时store类遵循了 <a href="http://deviq.com/repository-pattern" target="_blank" rel="noopener">仓储模式</a>.manager层和store层 是完全解耦的。意味着你可以自己重写store的持久化机制并且还不用修改上层的代码。</li>
 <li>假如你打算创建自己的 存储提供器（storage provider），那么你需要创建上面架构图中的绿色和灰色层的部分，你不需要重写蓝色层的部分。当你为你提供的user创建一个UserManager 或者 RoleManager示例的时，需要提供一个 store类作为参数，这样就为你加入自己定义的代码提供了机会。</li>
