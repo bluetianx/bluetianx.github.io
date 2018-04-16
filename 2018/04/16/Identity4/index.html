@@ -15,16 +15,20 @@
 
 
 
-<meta name="description" content="寻访不觉醉流霞">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hello,晓青">
-<meta property="og:url" content="https://github.com/bluetianx/archives/2018/04/index.html">
+<meta name="description" content="之前简单介绍了Asp.net core 的初步的使用，本篇我打算给大家介绍一下Identity的架构，让大家对Identity有一个总体的理解和认识。">
+<meta name="keywords" content="Asp.net core Identity">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解Aspnet Core之Identity(4)">
+<meta property="og:url" content="https://github.com/bluetianx/2018/04/16/Identity4/index.html">
 <meta property="og:site_name" content="Hello,晓青">
-<meta property="og:description" content="寻访不觉醉流霞">
+<meta property="og:description" content="之前简单介绍了Asp.net core 的初步的使用，本篇我打算给大家介绍一下Identity的架构，让大家对Identity有一个总体的理解和认识。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://github.com/bluetianx/2018/04/16/Identity4/Identity4/arc.png">
+<meta property="og:updated_time" content="2018-04-16T09:24:53.622Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello,晓青">
-<meta name="twitter:description" content="寻访不觉醉流霞">
+<meta name="twitter:title" content="深入理解Aspnet Core之Identity(4)">
+<meta name="twitter:description" content="之前简单介绍了Asp.net core 的初步的使用，本篇我打算给大家介绍一下Identity的架构，让大家对Identity有一个总体的理解和认识。">
+<meta name="twitter:image" content="https://github.com/bluetianx/2018/04/16/Identity4/Identity4/arc.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -56,7 +60,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Archives: 2018/4 | Hello,晓青</title>
+<title>深入理解Aspnet Core之Identity(4) | Hello,晓青</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -66,8 +70,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
-        isArchive: true,
+        isPost: true,
+        isArchive: false,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -271,126 +275,214 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-Identity4" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2018/04/16/Identity4/" class="archive-article-date">
-      <time datetime="2018-04-16T07:38:33.000Z" itemprop="datePublished">04-16</time>
+    <div class="article-meta">
+      <a href="/2018/04/16/Identity4/" class="article-date">
+      <time datetime="2018-04-16T07:38:33.000Z" itemprop="datePublished">2018-04-16</time>
 </a>
 
 
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/16/Identity4/">深入理解Aspnet Core之Identity(4)</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      深入理解Aspnet Core之Identity(4)
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
     <div class="article-category tagcloud">
     <a class="article-category-link" href="/categories/Asp-net-Core/">Asp.net Core</a>
     </div>
 
 
-          
+        
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Asp-net-core-Identity/">Asp.net core Identity</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+      </div>
+      
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2018/04/07/Identity3/" class="archive-article-date">
-      <time datetime="2018-04-07T06:53:41.000Z" itemprop="datePublished">04-07</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/07/Identity3/">深入理解Aspnet Core之Identity(3)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
+    <div class="article-entry" itemprop="articleBody">
+      
           
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Asp-net-Core/">Asp.net Core</a>
+        <h3 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h3><pre><code>之前简单介绍了Asp.net core 的初步的使用，本篇我打算给大家介绍一下Identity的架构，让大家对Identity有一个总体的理解和认识。
+</code></pre><hr>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Identity的基本的架构图如下：<br><img src="Identity4/arc.png" alt="avatar"></p>
+<ul>
+<li>Asp.net core Identity 是由一系列名为managers 和 stores 类组成的。manager层是主要identity架构的最高层，开发者主要在应用开发中用来对Identity User 进行管理，比如CRUD等操作。Stores 层相对于manager层在架构图中属于较低层次的类，主要用于持久化 用户（user）、角色（role）等信息，同时store类遵循了 <a href="http://deviq.com/repository-pattern" target="_blank" rel="noopener">仓储模式</a>.manager层和store层 是完全解耦的。意味着你可以自己重写store的持久化机制并且还不用修改上层的代码。</li>
+<li>假如你打算创建自己的 存储提供器（storage provider），那么你需要创建上面架构图中的绿色和灰色层的部分，你不需要重写蓝色层的部分。当你为你提供的user创建一个UserManager 或者 RoleManager示例的时，需要提供一个 store类作为参数，这样就为你加入自己定义的代码提供了机会。</li>
+</ul>
+<hr>
+<h3 id="Asp-net-core-Identity-存储数据（stores-data）类型"><a href="#Asp-net-core-Identity-存储数据（stores-data）类型" class="headerlink" title="Asp.net core Identity 存储数据（stores data）类型"></a>Asp.net core Identity 存储数据（stores data）类型</h3><h2 id="User"><a href="#User" class="headerlink" title="User"></a>User</h2><p>代表了网站的注册用户，内置的Identity User 能被扩展根据自身的需要。不需要自己直接去实现。<br>示例代码如下：</p>
+<pre><code class="C#">using Microsoft.AspNetCore.Identity;
+namespace DemoUser.Models
+{
+    public class AppUser:IdentityUser
+    {
+
+    }
+}
+</code></pre>
+<h2 id="User-Claims"><a href="#User-Claims" class="headerlink" title="User Claims"></a>User Claims</h2><p>User Claims 是关于用户的声明的集合，它比起传统的通过角色的机制更加强大，可以描述更多的用户信息。</p>
+<h2 id="User-Logins"><a href="#User-Logins" class="headerlink" title="User Logins"></a>User Logins</h2><p>是关于外部认证用户提供者（external authentication provider）（比如：谷歌、新浪等）的信息</p>
+<h2 id="Roles"><a href="#Roles" class="headerlink" title="Roles"></a>Roles</h2><p>代表了网站的授权组，包含角色ID ROleID、角色名 RoleName </p>
+<hr>
+<h3 id="数据访问层"><a href="#数据访问层" class="headerlink" title="数据访问层"></a>数据访问层</h3><p>数据访问层用于保存网站的用户账户数据到数据源。我们可以自定义开发这一层，数据访问层包含了多个存储类型比如User Storage、Role Storage。你可以根据自己应用网站的设计需要来实现这些存储类，假如你的网站不需要角色类型，那么就不需要实现Role Storage。</p>
+<hr>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>这篇简单介绍了一下Identity的架构设计。后续我打算自定义实现架构图中的绿色和灰色部分，到那时候我们在深入讨论一下如何实现。下一篇我将会分享关于 用户验证，包括当用户创建时候怎么验证用户名和email地址。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/04/07/Identity3/">
+                    深入理解Aspnet Core之Identity(3)
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#主题"><span class="toc-number">1.</span> <span class="toc-text">主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">2.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Asp-net-core-Identity-存储数据（stores-data）类型"><span class="toc-number">3.</span> <span class="toc-text">Asp.net core Identity 存储数据（stores data）类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User"><span class="toc-number"></span> <span class="toc-text">User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-Claims"><span class="toc-number"></span> <span class="toc-text">User Claims</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-Logins"><span class="toc-number"></span> <span class="toc-text">User Logins</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Roles"><span class="toc-number"></span> <span class="toc-text">Roles</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据访问层"><span class="toc-number">1.</span> <span class="toc-text">数据访问层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后记"><span class="toc-number">2.</span> <span class="toc-text">后记</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"深入理解Aspnet Core之Identity(4)　| Hello,晓青　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <!--<div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2018/04/16/Identity4/" data-title="深入理解Aspnet Core之Identity(4)" data-url="https://github.com/bluetianx/2018/04/16/Identity4/"></div>
+    <script>
+        var duoshuoQuery = {short_name:""};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>-->
+<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNTUyMS8xMjA1Nw==">
+    <script type="text/javascript">
+      (function (d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+  
+        if (typeof LivereTower === 'function') { return; }
+  
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+  
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+  </div>
+  <!-- City版安装代码已完成 -->
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/04/07/Identity3/" title="下一篇: 深入理解Aspnet Core之Identity(3)">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
     </div>
 
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Asp-net-core-Identity/">Asp.net core Identity</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2018/04/04/hello-world/" class="archive-article-date">
-      <time datetime="2018-04-04T12:05:28.991Z" itemprop="datePublished">04-04</time>
-</a>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Identity4/">深入理解Aspnet Core之Identity(4)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/07/Identity3/">深入理解Aspnet Core之Identity(3)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/04/hello-world/">Hello World</a></li></ul>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/04/hello-world/">Hello World</a>
-    </h1>
-  
 
-        <div class="article-info info-on-archive">
-          
 
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
