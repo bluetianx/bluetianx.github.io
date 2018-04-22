@@ -15,20 +15,20 @@
 
 
 
-<meta name="description" content="之前简单介绍了Asp.net core 的初步的使用，本篇我打算给大家介绍一下Identity的架构，让大家对Identity有一个总体的理解和认识。">
+<meta name="description" content="本篇我将会介绍验证用户的机制当账户被创建的时候，同样 这个过程主要有IUserValidator这个接口来实现的，和密码验证一样Identity同样也内置已经实现好的账户验证。账户验证的比较简单，我会先介绍内置的IUserValidator的使用，然后会简单介绍一些源代码，最后会演示怎实现一个自定义的IUserValidator">
 <meta name="keywords" content="Asp.net core Identity">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深入理解Aspnet Core之Identity(4)">
-<meta property="og:url" content="https://github.com/bluetianx/2018/04/16/Identity4/index.html">
+<meta property="og:title" content="深入理解Aspnet Core之Identity(5)">
+<meta property="og:url" content="https://github.com/bluetianx/2018/04/22/Identity5/index.html">
 <meta property="og:site_name" content="Hello,晓青">
-<meta property="og:description" content="之前简单介绍了Asp.net core 的初步的使用，本篇我打算给大家介绍一下Identity的架构，让大家对Identity有一个总体的理解和认识。">
+<meta property="og:description" content="本篇我将会介绍验证用户的机制当账户被创建的时候，同样 这个过程主要有IUserValidator这个接口来实现的，和密码验证一样Identity同样也内置已经实现好的账户验证。账户验证的比较简单，我会先介绍内置的IUserValidator的使用，然后会简单介绍一些源代码，最后会演示怎实现一个自定义的IUserValidator">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/bluetianx/2018/04/16/Identity4/arc.png">
-<meta property="og:updated_time" content="2018-04-16T09:44:18.418Z">
+<meta property="og:image" content="https://github.com/bluetianx/2018/04/22/Identity5/1.png">
+<meta property="og:updated_time" content="2018-04-22T12:04:16.001Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深入理解Aspnet Core之Identity(4)">
-<meta name="twitter:description" content="之前简单介绍了Asp.net core 的初步的使用，本篇我打算给大家介绍一下Identity的架构，让大家对Identity有一个总体的理解和认识。">
-<meta name="twitter:image" content="https://github.com/bluetianx/2018/04/16/Identity4/arc.png">
+<meta name="twitter:title" content="深入理解Aspnet Core之Identity(5)">
+<meta name="twitter:description" content="本篇我将会介绍验证用户的机制当账户被创建的时候，同样 这个过程主要有IUserValidator这个接口来实现的，和密码验证一样Identity同样也内置已经实现好的账户验证。账户验证的比较简单，我会先介绍内置的IUserValidator的使用，然后会简单介绍一些源代码，最后会演示怎实现一个自定义的IUserValidator">
+<meta name="twitter:image" content="https://github.com/bluetianx/2018/04/22/Identity5/1.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -60,7 +60,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>深入理解Aspnet Core之Identity(4) | Hello,晓青</title>
+<title>深入理解Aspnet Core之Identity(5) | Hello,晓青</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -275,11 +275,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-Identity4" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Identity5" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/04/16/Identity4/" class="article-date">
-      <time datetime="2018-04-16T07:38:33.000Z" itemprop="datePublished">2018-04-16</time>
+      <a href="/2018/04/22/Identity5/" class="article-date">
+      <time datetime="2018-04-22T09:32:28.000Z" itemprop="datePublished">2018-04-22</time>
 </a>
 
 
@@ -294,7 +294,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      深入理解Aspnet Core之Identity(4)
+      深入理解Aspnet Core之Identity(5)
     </h1>
   
 
@@ -302,10 +302,6 @@
       
       <div class="article-info article-info-post">
         
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Asp-net-Core/">Asp.net Core</a>
-    </div>
-
 
         
     <div class="article-tag tagcloud">
@@ -319,31 +315,79 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h3><pre><code>之前简单介绍了Asp.net core 的初步的使用，本篇我打算给大家介绍一下Identity的架构，让大家对Identity有一个总体的理解和认识。
-</code></pre><hr>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Identity的基本的架构图如下：<br><img src="arc.png" alt="avatar"></p>
+        <h3 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h3><p>本篇我将会介绍验证用户的机制当账户被创建的时候，同样 这个过程主要有IUserValidator这个接口来实现的，和密码验证一样Identity同样也内置已经实现好的账户验证。账户验证的比较简单，我会先介绍内置的IUserValidator的使用，然后会简单介绍一些源代码，最后会演示怎实现一个自定义的IUserValidator。</p>
+<hr>
+<h3 id="使用内置的IUserValidator来定义用户户名的规则"><a href="#使用内置的IUserValidator来定义用户户名的规则" class="headerlink" title="使用内置的IUserValidator来定义用户户名的规则"></a>使用内置的IUserValidator来定义用户户名的规则</h3><p>用户名验证规则是在Startup类 里面进行配置的，通过用IdentityOptions.User进行配置，IdentityOptions.User是UserOptions类的实例。UserOptions属性的列表如下：</p>
 <ul>
-<li>Asp.net core Identity 是由一系列名为managers 和 stores 类组成的。manager层是主要identity架构的最高层，开发者主要在应用开发中用来对Identity User 进行管理，比如CRUD等操作。Stores 层相对于manager层在架构图中属于较低层次的类，主要用于持久化 用户（user）、角色（role）等信息，同时store类遵循了 <a href="http://deviq.com/repository-pattern" target="_blank" rel="noopener">仓储模式</a>.manager层和store层 是完全解耦的。意味着你可以自己重写store的持久化机制并且还不用修改上层的代码。</li>
-<li>假如你打算创建自己的 存储提供器（storage provider），那么你需要创建上面架构图中的绿色和灰色层的部分，你不需要重写蓝色层的部分。当你为你提供的user创建一个UserManager 或者 RoleManager示例的时，需要提供一个 store类作为参数，这样就为你加入自己定义的代码提供了机会。</li>
+<li>AllowedUserNameCharacters ：类型string 代表用户创建用户名可以使用的字符，默认为：abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+</li>
+<li>RequireUniqueEmail ：类型 bool，true 代表创建账户使用的email必须是没有被用过的。</li>
+</ul>
+<p>现在Startup类中的ConfigureServices方法配置用户名验证规则，代码如下：<br>···C#<br>public void ConfigureServices(IServiceCollection services)<br>        {<br>            //注入自定义密码验证类<br>            services.AddTransient&lt;IPasswordValidator<appuser>,<br>                CustomPasswordValidator&gt;();</appuser></p>
+<pre><code>    services.AddDbContext&lt;AppIdentityDbContext&gt;(options =&gt;
+        options.UseSqlServer(
+            Configuration[&quot;Data:AppStoreIdentity:ConnectionString&quot;]));
+    //配置
+    services.AddIdentity&lt;AppUser, IdentityRole&gt;(opts =&gt; {
+            //配置用户名验证规则
+            opts.User.RequireUniqueEmail = true;
+            opts.User.AllowedUserNameCharacters = &quot;testabc&quot;;
+            //配置密码强度
+            opts.Password.RequiredLength = 6;
+            opts.Password.RequireNonAlphanumeric = false;
+            opts.Password.RequireLowercase = false;
+            opts.Password.RequireUppercase = false;
+            opts.Password.RequireDigit = false;
+        }).AddEntityFrameworkStores&lt;AppIdentityDbContext&gt;()
+        .AddDefaultTokenProviders();
+    services.AddMvc();
+}
+</code></pre><p>···</p>
+<ul>
+<li>当用户创建账户时候要求email必须是未使用过的，用户名仅包含 testabc 这里面的字符。<br>我们启动网站，创建一个账户，看一下配置是否生效，结果如下图：<br><img src="1.png" alt="avatar"></li>
 </ul>
 <hr>
-<h3 id="Asp-net-core-Identity-存储数据（stores-data）类型"><a href="#Asp-net-core-Identity-存储数据（stores-data）类型" class="headerlink" title="Asp.net core Identity 存储数据（stores data）类型"></a>Asp.net core Identity 存储数据（stores data）类型</h3><h2 id="User"><a href="#User" class="headerlink" title="User"></a>User</h2><p>代表了网站的注册用户，内置的Identity User 能被扩展根据自身的需要。不需要自己直接去实现。<br>示例代码如下：</p>
-<pre><code class="C#">using Microsoft.AspNetCore.Identity;
-namespace DemoUser.Models
-{
-    public class AppUser:IdentityUser
-    {
+<h3 id="自定义用户验证"><a href="#自定义用户验证" class="headerlink" title="自定义用户验证"></a>自定义用户验证</h3><ul>
+<li>虽然内置的用户验证可以满足很多场景，但是假如我们要求创建的拥护都要包含<a href="mailto:test@163.com" target="_blank" rel="noopener">test@163.com</a>这个后缀时，我们就需要自定义一个用户验证类了。<h2 id="IUserValidator接口的源代码"><a href="#IUserValidator接口的源代码" class="headerlink" title="IUserValidator接口的源代码"></a>IUserValidator接口的源代码</h2>···C#<br>// Copyright (c) .NET Foundation. All rights reserved.<br>// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.</li>
+</ul>
+<p>using System.Threading;<br>using System.Threading.Tasks;</p>
+<p>namespace Microsoft.AspNetCore.Identity<br>{<br>    /// <summary><br>    /// Provides an abstraction for user validation.<br>    /// </summary><br>    /// <typeparam name="TUser">The type encapsulating a user.</typeparam><br>    public interface IUserValidator<tuser> where TUser : class<br>    {<br>        /// <summary><br>        /// Validates the specified <paramref name="user"> as an asynchronous operation.<br>        /// </paramref></summary><br>        /// <param name="manager">The <see cref="UserManager{TUser}"> that can be used to retrieve user properties.<br>        /// <param name="user">The user to validate.<br>        /// <returns>The <see cref="Task"> that represents the asynchronous operation, containing the <see cref="IdentityResult"> of the validation operation.</see></see></returns><br>        Task<identityresult> ValidateAsync(UserManager<tuser> manager, TUser user);<br>    }<br>}<br>···</tuser></identityresult></see></tuser></p>
+<ul>
+<li>该接口很简单就包含了 ValidateAsync方法，用于验证用户名，<h2 id="实现IUserValidator-接口"><a href="#实现IUserValidator-接口" class="headerlink" title="实现IUserValidator 接口"></a>实现IUserValidator 接口</h2>在Infrastructure文件夹中创建一个CustomUserValidator C#文件，代码如下<br>···C#<br>using System.Threading.Tasks;<br>using DemoUser.Models;<br>using Microsoft.AspNetCore.Identity;</li>
+</ul>
+<p>namespace DemoUser.Infrastructure<br>{<br>    public class CustomUserValidator<br>    {<br>        public Task<identityresult> ValidateAsync(UserManager<appuser> manager,<br>            AppUser user) {<br>            if (user.Email.ToLower().EndsWith(“<a href="mailto:test@163.com" target="_blank" rel="noopener">test@163.com</a>“)) {<br>                return Task.FromResult(IdentityResult.Success);<br>            } else {<br>                return Task.FromResult(IdentityResult.Failed(new IdentityError {<br>                    Code = “EmailError”,<br>                    Description = “仅仅可以包含<a href="mailto:test@163.com" target="_blank" rel="noopener">test@163.com</a>后缀”<br>                }));<br>            } }<br>    }<br>}<br> ···</appuser></identityresult></p>
+<ul>
+<li><p>我们在Startup类中的ConfigureServices 注入我们自定义的CustomUserValidator类，代码如下：<br>···C#<br>public void ConfigureServices(IServiceCollection services)</p>
+<pre><code>{
+    //注入自定义用户名验证类
+    services.AddTransient&lt;IUserValidator&lt;AppUser&gt;,
+        CustomUserValidator&gt;();
 
-    }
+    //注入自定义密码验证类
+    services.AddTransient&lt;IPasswordValidator&lt;AppUser&gt;,
+        CustomPasswordValidator&gt;();
+
+    services.AddDbContext&lt;AppIdentityDbContext&gt;(options =&gt;
+        options.UseSqlServer(
+            Configuration[&quot;Data:AppStoreIdentity:ConnectionString&quot;]));
+    //配置
+    services.AddIdentity&lt;AppUser, IdentityRole&gt;(opts =&gt; {
+            //配置用户名验证规则
+            opts.User.RequireUniqueEmail = true;
+            opts.User.AllowedUserNameCharacters = &quot;testabc&quot;;
+            //配置密码强度
+            opts.Password.RequiredLength = 6;
+            opts.Password.RequireNonAlphanumeric = false;
+            opts.Password.RequireLowercase = false;
+            opts.Password.RequireUppercase = false;
+            opts.Password.RequireDigit = false;
+        }).AddEntityFrameworkStores&lt;AppIdentityDbContext&gt;()
+        .AddDefaultTokenProviders();
+    services.AddMvc();
 }
-</code></pre>
-<h2 id="User-Claims"><a href="#User-Claims" class="headerlink" title="User Claims"></a>User Claims</h2><p>User Claims 是关于用户的声明的集合，它比起传统的通过角色的机制更加强大，可以描述更多的用户信息。</p>
-<h2 id="User-Logins"><a href="#User-Logins" class="headerlink" title="User Logins"></a>User Logins</h2><p>是关于外部认证用户提供者（external authentication provider）（比如：谷歌、新浪等）的信息</p>
-<h2 id="Roles"><a href="#Roles" class="headerlink" title="Roles"></a>Roles</h2><p>代表了网站的授权组，包含角色ID ROleID、角色名 RoleName </p>
-<hr>
-<h3 id="数据访问层"><a href="#数据访问层" class="headerlink" title="数据访问层"></a>数据访问层</h3><p>数据访问层用于保存网站的用户账户数据到数据源。我们可以自定义开发这一层，数据访问层包含了多个存储类型比如User Storage、Role Storage。你可以根据自己应用网站的设计需要来实现这些存储类，假如你的网站不需要角色类型，那么就不需要实现Role Storage。</p>
-<hr>
-<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>这篇简单介绍了一下Identity的架构设计。后续我打算自定义实现架构图中的绿色和灰色部分，到那时候我们在深入讨论一下如何实现。下一篇我将会分享关于 用户验证，包括当用户创建时候怎么验证用户名和email地址。</p>
+</code></pre><p>···<br>这样我们就成功替换掉内置的用户验证类了。重新运行程序就可以了。</p>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>这篇介绍了IUserValidator的使用方法，以及如何自定义我们自己的规则。从下一篇开始我打算开始介绍如何用Identity来对用户进行验证和授权。</p>
+</li>
+</ul>
 
       
     </div>
@@ -355,16 +399,10 @@ namespace DemoUser.Models
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/04/22/Identity5/">
-                    深入理解Aspnet Core之Identity(5)
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/04/07/Identity3/">
-                    深入理解Aspnet Core之Identity(3)
+                <a href="/2018/04/16/Identity4/">
+                    深入理解Aspnet Core之Identity(4)
                 </a>
             </div>
         
@@ -376,7 +414,7 @@ namespace DemoUser.Models
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#主题"><span class="toc-number">1.</span> <span class="toc-text">主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">2.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Asp-net-core-Identity-存储数据（stores-data）类型"><span class="toc-number">3.</span> <span class="toc-text">Asp.net core Identity 存储数据（stores data）类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User"><span class="toc-number"></span> <span class="toc-text">User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-Claims"><span class="toc-number"></span> <span class="toc-text">User Claims</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-Logins"><span class="toc-number"></span> <span class="toc-text">User Logins</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Roles"><span class="toc-number"></span> <span class="toc-text">Roles</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据访问层"><span class="toc-number">1.</span> <span class="toc-text">数据访问层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后记"><span class="toc-number">2.</span> <span class="toc-text">后记</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#主题"><span class="toc-number">1.</span> <span class="toc-text">主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用内置的IUserValidator来定义用户户名的规则"><span class="toc-number">2.</span> <span class="toc-text">使用内置的IUserValidator来定义用户户名的规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义用户验证"><span class="toc-number">3.</span> <span class="toc-text">自定义用户验证</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IUserValidator接口的源代码"><span class="toc-number"></span> <span class="toc-text">IUserValidator接口的源代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现IUserValidator-接口"><span class="toc-number"></span> <span class="toc-text">实现IUserValidator 接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#后记"><span class="toc-number">1.</span> <span class="toc-text">后记</span></a></li></ol>
         
     </div>
     <style>
@@ -412,7 +450,7 @@ namespace DemoUser.Models
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"深入理解Aspnet Core之Identity(4)　| Hello,晓青　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"深入理解Aspnet Core之Identity(5)　| Hello,晓青　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -428,7 +466,7 @@ namespace DemoUser.Models
     
       <!--<div class="duoshuo" id="comments">
     <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2018/04/16/Identity4/" data-title="深入理解Aspnet Core之Identity(4)" data-url="https://github.com/bluetianx/2018/04/16/Identity4/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2018/04/22/Identity5/" data-title="深入理解Aspnet Core之Identity(5)" data-url="https://github.com/bluetianx/2018/04/22/Identity5/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -469,15 +507,13 @@ namespace DemoUser.Models
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/04/22/Identity5/" title="上一篇: 深入理解Aspnet Core之Identity(5)">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/04/07/Identity3/" title="下一篇: 深入理解Aspnet Core之Identity(3)">
+            <a href="/2018/04/16/Identity4/" title="下一篇: 深入理解Aspnet Core之Identity(4)">
                 <i class="fa fa-angle-right"></i>
             </a>
         
