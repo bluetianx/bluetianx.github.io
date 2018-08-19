@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://github.com/bluetianx/2018/08/18/Asp-netCoreSignalR/1.png">
 <meta property="og:image" content="https://github.com/bluetianx/2018/08/18/Asp-netCoreSignalR/2.png">
 <meta property="og:image" content="https://github.com/bluetianx/2018/08/18/Asp-netCoreSignalR/3.png">
-<meta property="og:updated_time" content="2018-08-18T12:37:09.048Z">
+<meta property="og:updated_time" content="2018-08-19T10:14:57.362Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="横向扩展你的ASP.NET Core SignalR 应用（翻译）">
 <meta name="twitter:description" content="最近项目要用signalr来做实时通信，在研究asp.netcore signalr 应用横向扩展时候发现了这篇国外的博客，和大家分享一下">
@@ -325,7 +325,7 @@
 <hr>
 <h1 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h1><p>当你把你的应用部署到生产环境时，你将会想横向扩展你的应用。横向扩展意味着要你的应用要在多台服务器上运行。<br>当应用运行在云端进行横向扩展时，你要考虑的主要问题时设置你想运行服务器的数量。有一种叫做负载均衡的机制，<br>这种机制会对每个传入的请求选择一个服务器。负载均衡能按照顺序选择不同的服务器或者根据其他的处理逻辑继续选择同一个。</p>
 <hr>
-<h1 id="Websockets"><a href="#Websockets" class="headerlink" title="Websockets"></a>Websockets</h1><p>当使用web sockets时没有什么问题（译注：意思指使用无状态的负载均衡时候）。因为web sockets一旦建立了就像服务端和浏览器建立了一个管道。但是当使用轮询或者长轮询时候就可能出现，每个消息时不同的请求并且每个处理的请求都能转换到不同的服务器。服务器坑不知道之前发送到这个客户端的消息和关于这个消息的上下文。<br>举例你的应用被横向扩展到不同服务器山，服务器1正在获取关于准备订单1（prepare order 1）的请求然后它开始处理这个请求。当你使用长轮询方式进行请求时候，接下来的请求会通过负载均衡分配到不同的服务器。这个服务器是不知道关于 订单1（order1）的信息的。<br>对于服务端发送事件（译注：<a href="http://www.ruanyifeng.com/blog/2017/05/server-sent_events.html" target="_blank" rel="noopener">关于服务器发送事</a>)也会出现同样的问题，因为http连接可能会被删除，这个连接将立刻会通过在浏览器的事件源（EventSource）恢复。</p>
+<h1 id="Websockets"><a href="#Websockets" class="headerlink" title="Websockets"></a>Websockets</h1><p>当使用web sockets时没有什么问题（译注：意思指使用无状态的负载均衡时候）。因为web sockets一旦建立了就像服务端和浏览器建立了一个管道。但是当使用轮询或者长轮询时候就可能出现，每个消息时不同的请求并且每个处理的请求都能转换到不同的服务器。服务器坑不知道之前发送到这个客户端的消息和关于这个消息的上下文。<br>举例你的应用被横向扩展到不同服务器上，服务器1正在获取关于准备订单1（prepare order 1）的请求然后它开始处理这个请求。当你使用长轮询方式进行请求时候，接下来的请求会通过负载均衡分配到不同的服务器。这个服务器是不知道关于 订单1（order1）的信息的。<br>对于服务端发送事件（译注：<a href="http://www.ruanyifeng.com/blog/2017/05/server-sent_events.html" target="_blank" rel="noopener">关于服务器发送事</a>)也会出现同样的问题，因为http连接可能会被删除，这个连接将立刻会通过在浏览器的事件源（EventSource）恢复。</p>
 <hr>
 <h1 id="粘连会话（Sticky-Sessions）"><a href="#粘连会话（Sticky-Sessions）" class="headerlink" title="粘连会话（Sticky Sessions）"></a>粘连会话（Sticky Sessions）</h1><p>我们能通过使用粘连会话解决这个问题。粘连会话有很多种实现，大部分实现方式如下，对于第一次请求的响应负载均衡能在浏览器设置一个cookie用来指明这个使用的服务器。在接下来的请求负载均衡能读取这个cookie并且分配这个请求到同一台服务器。</p>
 <p><img src="1.png" alt="avatar"></p>
