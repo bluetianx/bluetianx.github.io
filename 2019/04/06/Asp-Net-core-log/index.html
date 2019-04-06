@@ -15,20 +15,20 @@
 
 
 
-<meta name="description" content="之前简单介绍了Asp.net core 的初步的使用，本篇我打算给大家介绍一下Identity的架构，让大家对Identity有一个总体的理解和认识。">
-<meta name="keywords" content="Asp.net core Identity">
+<meta name="description" content="本文我将演示如何定制日志记录。默认的日志记录仅仅向控制台或者debug窗口输出日志，这样可以满足一些情况，但是你可能还需要把日志记录到一个磁盘文件或者数据库，或者你想为记录额外的信息。这样的场景你就需要知道如何修改默认的日志记录">
+<meta name="keywords" content="ASP.NET Core Log">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深入理解Aspnet Core之Identity(4)">
-<meta property="og:url" content="https://github.com/bluetianx/2018/04/16/Identity4/index.html">
+<meta property="og:title" content="自定义Asp.net core——日志记录">
+<meta property="og:url" content="https://github.com/bluetianx/2019/04/06/Asp-Net-core-log/index.html">
 <meta property="og:site_name" content="Hello,晓青">
-<meta property="og:description" content="之前简单介绍了Asp.net core 的初步的使用，本篇我打算给大家介绍一下Identity的架构，让大家对Identity有一个总体的理解和认识。">
+<meta property="og:description" content="本文我将演示如何定制日志记录。默认的日志记录仅仅向控制台或者debug窗口输出日志，这样可以满足一些情况，但是你可能还需要把日志记录到一个磁盘文件或者数据库，或者你想为记录额外的信息。这样的场景你就需要知道如何修改默认的日志记录">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/bluetianx/2018/04/16/Identity4/arc.png">
-<meta property="og:updated_time" content="2018-04-16T09:44:18.418Z">
+<meta property="og:image" content="https://github.com/bluetianx/2019/04/06/Asp-Net-core-log/1.png">
+<meta property="og:updated_time" content="2019-04-06T15:01:04.093Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深入理解Aspnet Core之Identity(4)">
-<meta name="twitter:description" content="之前简单介绍了Asp.net core 的初步的使用，本篇我打算给大家介绍一下Identity的架构，让大家对Identity有一个总体的理解和认识。">
-<meta name="twitter:image" content="https://github.com/bluetianx/2018/04/16/Identity4/arc.png">
+<meta name="twitter:title" content="自定义Asp.net core——日志记录">
+<meta name="twitter:description" content="本文我将演示如何定制日志记录。默认的日志记录仅仅向控制台或者debug窗口输出日志，这样可以满足一些情况，但是你可能还需要把日志记录到一个磁盘文件或者数据库，或者你想为记录额外的信息。这样的场景你就需要知道如何修改默认的日志记录">
+<meta name="twitter:image" content="https://github.com/bluetianx/2019/04/06/Asp-Net-core-log/1.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -60,7 +60,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>深入理解Aspnet Core之Identity(4) | Hello,晓青</title>
+<title>自定义Asp.net core——日志记录 | Hello,晓青</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -275,11 +275,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-Identity4" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Asp-Net-core-log" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/04/16/Identity4/" class="article-date">
-      <time datetime="2018-04-16T07:38:33.000Z" itemprop="datePublished">2018-04-16</time>
+      <a href="/2019/04/06/Asp-Net-core-log/" class="article-date">
+      <time datetime="2019-04-06T14:13:27.000Z" itemprop="datePublished">2019-04-06</time>
 </a>
 
 
@@ -294,7 +294,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      深入理解Aspnet Core之Identity(4)
+      自定义Asp.net core——日志记录
     </h1>
   
 
@@ -309,7 +309,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Asp-net-core-Identity/">Asp.net core Identity</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ASP-NET-Core-Log/">ASP.NET Core Log</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -319,31 +319,19 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h3><pre><code>之前简单介绍了Asp.net core 的初步的使用，本篇我打算给大家介绍一下Identity的架构，让大家对Identity有一个总体的理解和认识。
-</code></pre><hr>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Identity的基本的架构图如下：<br><img src="arc.png" alt="avatar"></p>
-<ul>
-<li>Asp.net core Identity 是由一系列名为managers 和 stores 类组成的。manager层是主要identity架构的最高层，开发者主要在应用开发中用来对Identity User 进行管理，比如CRUD等操作。Stores 层相对于manager层在架构图中属于较低层次的类，主要用于持久化 用户（user）、角色（role）等信息，同时store类遵循了 <a href="http://deviq.com/repository-pattern" target="_blank" rel="noopener">仓储模式</a>.manager层和store层 是完全解耦的。意味着你可以自己重写store的持久化机制并且还不用修改上层的代码。</li>
-<li>假如你打算创建自己的 存储提供器（storage provider），那么你需要创建上面架构图中的绿色和灰色层的部分，你不需要重写蓝色层的部分。当你为你提供的user创建一个UserManager 或者 RoleManager示例的时，需要提供一个 store类作为参数，这样就为你加入自己定义的代码提供了机会。</li>
-</ul>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文我将演示如何定制日志记录。默认的日志记录仅仅向控制台或者debug窗口输出日志，这样可以满足一些情况，但是你可能还需要把日志记录到一个磁盘文件或者数据库，或者你想为记录额外的信息。这样的场景你就需要知道如何修改默认的日志记录。</p>
 <hr>
-<h3 id="Asp-net-core-Identity-存储数据（stores-data）类型"><a href="#Asp-net-core-Identity-存储数据（stores-data）类型" class="headerlink" title="Asp.net core Identity 存储数据（stores data）类型"></a>Asp.net core Identity 存储数据（stores data）类型</h3><h2 id="User"><a href="#User" class="headerlink" title="User"></a>User</h2><p>代表了网站的注册用户，内置的Identity User 能被扩展根据自身的需要。不需要自己直接去实现。<br>示例代码如下：</p>
-<pre><code class="C#">using Microsoft.AspNetCore.Identity;
-namespace DemoUser.Models
-{
-    public class AppUser:IdentityUser
-    {
-
-    }
-}
-</code></pre>
-<h2 id="User-Claims"><a href="#User-Claims" class="headerlink" title="User Claims"></a>User Claims</h2><p>User Claims 是关于用户的声明的集合，它比起传统的通过角色的机制更加强大，可以描述更多的用户信息。</p>
-<h2 id="User-Logins"><a href="#User-Logins" class="headerlink" title="User Logins"></a>User Logins</h2><p>是关于外部认证用户提供者（external authentication provider）（比如：谷歌、新浪等）的信息</p>
-<h2 id="Roles"><a href="#Roles" class="headerlink" title="Roles"></a>Roles</h2><p>代表了网站的授权组，包含角色ID ROleID、角色名 RoleName </p>
-<hr>
-<h3 id="数据访问层"><a href="#数据访问层" class="headerlink" title="数据访问层"></a>数据访问层</h3><p>数据访问层用于保存网站的用户账户数据到数据源。我们可以自定义开发这一层，数据访问层包含了多个存储类型比如User Storage、Role Storage。你可以根据自己应用网站的设计需要来实现这些存储类，假如你的网站不需要角色类型，那么就不需要实现Role Storage。</p>
-<hr>
-<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>这篇简单介绍了一下Identity的架构设计。后续我打算自定义实现架构图中的绿色和灰色部分，到那时候我们在深入讨论一下如何实现。下一篇我将会分享关于 用户验证，包括当用户创建时候怎么验证用户名和email地址。</p>
+<h1 id="配置日志记录"><a href="#配置日志记录" class="headerlink" title="配置日志记录"></a>配置日志记录</h1><p>在asp.net core 2.0以前的版本，日志记录是在Startup.cs中，从2.0开始startup.cs被简化，并且把大量的配置代码转移到了webhostBuider中（3.0 是CreateDefaultBuilder）。同样日志记录配置也被转移到了该地方。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Program</span><br><span class="line">    &#123;</span><br><span class="line">        public static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            CreateHostBuilder(args).Build().Run();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public static IHostBuilder CreateHostBuilder(string[] args) =&gt;</span><br><span class="line">            Host.CreateDefaultBuilder(args)</span><br><span class="line">                .ConfigureWebHostDefaults(webBuilder =&gt; &#123; webBuilder.UseStartup&lt;Startup&gt;(); &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>在asp.net core 中你几乎可以修改所有的东西。所以你也能够定制日志记录。IHostBuilder有很多可以覆盖默认行为的扩展方法。我们需要用ConfigureLogging方法去覆盖日志记录的默认逻辑。下面在CreateDefaultBuilder插入的代码演示了如何配置日志记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Host.CreateDefaultBuilder(args)</span><br><span class="line">                .ConfigureLogging((hostingContext, logging) =&gt;</span><br><span class="line">                    &#123;</span><br><span class="line">                        logging.AddConfiguration(hostingContext.Configuration.GetSection(&quot;Logging&quot;));</span><br><span class="line">                        logging.AddConsole();</span><br><span class="line">                        logging.AddDebug();</span><br><span class="line">                    &#125;)</span><br><span class="line">                .ConfigureWebHostDefaults(webBuilder =&gt; &#123; webBuilder.UseStartup&lt;Startup&gt;(); &#125;);</span><br></pre></td></tr></table></figure>
+<p>这个方法需要一个获取HostBuilderContext的lambda表达式，HostBuilderContext包含了用于配置日志的hosting context和一个LoggingBuilder。</p>
+<h1 id="创建一个自定义的logger"><a href="#创建一个自定义的logger" class="headerlink" title="创建一个自定义的logger"></a>创建一个自定义的logger</h1><p>为了演示如何自定义logger，我创建一个简单的logger，这个logger能够把指定的日志等级用带颜色的文字输出到控制台。我们创建一个名为ColoredConsoleLogger的类，我们同样写一个LoggerProvider用来增加与创建上面的logger。为了把输出指定的颜色和日志等级，我们还需要增加一个配置类，下面代码包含了上述三部分的具体实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">public class ColoredConsoleLoggerConfiguration</span><br><span class="line">    &#123;</span><br><span class="line">        public LogLevel LogLevel &#123; get; set; &#125; = LogLevel.Warning;</span><br><span class="line">        public int EventId &#123; get; set; &#125; = 0;</span><br><span class="line">        public ConsoleColor Color &#123; get; set; &#125; = ConsoleColor.Yellow;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public class ColoredConsoleLoggerProvider : ILoggerProvider</span><br><span class="line">    &#123;</span><br><span class="line">        private readonly ColoredConsoleLoggerConfiguration _config;</span><br><span class="line"></span><br><span class="line">        private readonly ConcurrentDictionary&lt;string, ColoredConsoleLogger&gt; _loggers =</span><br><span class="line">            new ConcurrentDictionary&lt;string, ColoredConsoleLogger&gt;();</span><br><span class="line"></span><br><span class="line">        public ColoredConsoleLoggerProvider(ColoredConsoleLoggerConfiguration config)</span><br><span class="line">        &#123;</span><br><span class="line">            _config = config;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public ILogger CreateLogger(string categoryName)</span><br><span class="line">        &#123;</span><br><span class="line">            return _loggers.GetOrAdd(categoryName, name =&gt; new ColoredConsoleLogger(name, _config));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void Dispose()</span><br><span class="line">        &#123;</span><br><span class="line">            _loggers.Clear();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public class ColoredConsoleLogger : ILogger</span><br><span class="line">    &#123;</span><br><span class="line">        private static object _lock = new Object();</span><br><span class="line">        private readonly string _name;</span><br><span class="line">        private readonly ColoredConsoleLoggerConfiguration _config;</span><br><span class="line"></span><br><span class="line">        public ColoredConsoleLogger(string name, ColoredConsoleLoggerConfiguration config)</span><br><span class="line">        &#123;</span><br><span class="line">            _name = name;</span><br><span class="line">            _config = config;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public IDisposable BeginScope&lt;TState&gt;(TState state)</span><br><span class="line">        &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public bool IsEnabled(LogLevel logLevel)</span><br><span class="line">        &#123;</span><br><span class="line">            return logLevel == _config.LogLevel;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void Log&lt;TState&gt;(LogLevel logLevel, EventId eventId, TState state, Exception exception,</span><br><span class="line">            Func&lt;TState, Exception, string&gt; formatter)</span><br><span class="line">        &#123;</span><br><span class="line">            if (!IsEnabled(logLevel))</span><br><span class="line">            &#123;</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            lock (_lock)</span><br><span class="line">            &#123;</span><br><span class="line">                if (_config.EventId == 0 || _config.EventId == eventId.Id)</span><br><span class="line">                &#123;</span><br><span class="line">                    var color = Console.ForegroundColor;</span><br><span class="line">                    Console.ForegroundColor = _config.Color;</span><br><span class="line">                    Console.WriteLine(</span><br><span class="line">                        $&quot;&#123;logLevel.ToString()&#125; - &#123;eventId.Id&#125; - &#123;_name&#125; - &#123;formatter(state, exception)&#125;&quot;);</span><br><span class="line">                    Console.ForegroundColor = color;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>我们需要对具体的控制台输出加上锁，因为控制台不是线程安全的。接下来我们就可以把自定义的logger添加到ConfigureLogging方法中了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">logging.ClearProviders();</span><br><span class="line"></span><br><span class="line">var config = new ColoredConsoleLoggerConfiguration</span><br><span class="line">&#123;</span><br><span class="line">    LogLevel = LogLevel.Information,</span><br><span class="line">    Color = ConsoleColor.Red</span><br><span class="line">&#125;;</span><br><span class="line">logging.AddProvider(new ColoredConsoleLoggerProvider(config));</span><br></pre></td></tr></table></figure>
+<p>我们可以清除之前已经添加的logger provider，然后我们通过AddProvider增加一个指定对应的日志记录设置ColoredConsoleLoggerProvider实例。我们也可以增加其他不同日志记录设置的实例。下图我们就可以看到我们自定义日志记录的效果输出</p>
+<p><img src="1.png" alt="avatar"></p>
 
       
     </div>
@@ -355,16 +343,10 @@ namespace DemoUser.Models
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/04/22/Identity5/">
-                    深入理解Aspnet Core之Identity(5)
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/04/07/Identity3/">
-                    深入理解Aspnet Core之Identity(3)
+                <a href="/2018/11/18/cross-platformTimeZones/">
+                    .Net Core与跨平台时区
                 </a>
             </div>
         
@@ -376,7 +358,7 @@ namespace DemoUser.Models
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#主题"><span class="toc-number">1.</span> <span class="toc-text">主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">2.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Asp-net-core-Identity-存储数据（stores-data）类型"><span class="toc-number">3.</span> <span class="toc-text">Asp.net core Identity 存储数据（stores data）类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User"><span class="toc-number"></span> <span class="toc-text">User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-Claims"><span class="toc-number"></span> <span class="toc-text">User Claims</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-Logins"><span class="toc-number"></span> <span class="toc-text">User Logins</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Roles"><span class="toc-number"></span> <span class="toc-text">Roles</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据访问层"><span class="toc-number">1.</span> <span class="toc-text">数据访问层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后记"><span class="toc-number">2.</span> <span class="toc-text">后记</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置日志记录"><span class="toc-number">2.</span> <span class="toc-text">配置日志记录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#创建一个自定义的logger"><span class="toc-number">3.</span> <span class="toc-text">创建一个自定义的logger</span></a></li></ol>
         
     </div>
     <style>
@@ -412,7 +394,7 @@ namespace DemoUser.Models
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"深入理解Aspnet Core之Identity(4)　| Hello,晓青　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"自定义Asp.net core——日志记录　| Hello,晓青　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -428,7 +410,7 @@ namespace DemoUser.Models
     
       <!--<div class="duoshuo" id="comments">
     <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2018/04/16/Identity4/" data-title="深入理解Aspnet Core之Identity(4)" data-url="https://github.com/bluetianx/2018/04/16/Identity4/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/04/06/Asp-Net-core-log/" data-title="自定义Asp.net core——日志记录" data-url="https://github.com/bluetianx/2019/04/06/Asp-Net-core-log/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -469,15 +451,13 @@ namespace DemoUser.Models
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/04/22/Identity5/" title="上一篇: 深入理解Aspnet Core之Identity(5)">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/04/07/Identity3/" title="下一篇: 深入理解Aspnet Core之Identity(3)">
+            <a href="/2018/11/18/cross-platformTimeZones/" title="下一篇: .Net Core与跨平台时区">
                 <i class="fa fa-angle-right"></i>
             </a>
         
