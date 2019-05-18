@@ -15,20 +15,20 @@
 
 
 
-<meta name="description" content="本文我将演示如何定制日志记录。默认的日志记录仅仅向控制台或者debug窗口输出日志，这样可以满足一些情况，但是你可能还需要把日志记录到一个磁盘文件或者数据库，或者你想为记录额外的信息。这样的场景你就需要知道如何修改默认的日志记录">
-<meta name="keywords" content="ASP.NET Core Log">
+<meta name="description" content="通用Host(Generic Host) 与 web Host 不同的地方就是通用Host解耦了Http请求管道，使得通用Host拥有更广的应用场景。比如：消息收发、后台任务以及其他非http的工作负载。这些场景都可以通过使用通用Host拥有横切（Cross-cutting）的能力，比如：配置、依赖注入和日志记录。">
+<meta name="keywords" content="Net Core Generic Host">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自定义Asp.net core——日志记录">
-<meta property="og:url" content="https://github.com/bluetianx/2019/04/06/Asp-Net-core-log/index.html">
+<meta property="og:title" content="net core 的Generic Host 之Generic Host Builder">
+<meta property="og:url" content="https://github.com/bluetianx/2019/05/18/generichost/index.html">
 <meta property="og:site_name" content="Hello,晓青">
-<meta property="og:description" content="本文我将演示如何定制日志记录。默认的日志记录仅仅向控制台或者debug窗口输出日志，这样可以满足一些情况，但是你可能还需要把日志记录到一个磁盘文件或者数据库，或者你想为记录额外的信息。这样的场景你就需要知道如何修改默认的日志记录">
+<meta property="og:description" content="通用Host(Generic Host) 与 web Host 不同的地方就是通用Host解耦了Http请求管道，使得通用Host拥有更广的应用场景。比如：消息收发、后台任务以及其他非http的工作负载。这些场景都可以通过使用通用Host拥有横切（Cross-cutting）的能力，比如：配置、依赖注入和日志记录。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/bluetianx/2019/04/06/Asp-Net-core-log/1.png">
-<meta property="og:updated_time" content="2019-04-06T15:01:04.093Z">
+<meta property="og:image" content="https://github.com/bluetianx/2019/05/18/generichost/a.png">
+<meta property="og:updated_time" content="2019-05-18T10:14:53.622Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="自定义Asp.net core——日志记录">
-<meta name="twitter:description" content="本文我将演示如何定制日志记录。默认的日志记录仅仅向控制台或者debug窗口输出日志，这样可以满足一些情况，但是你可能还需要把日志记录到一个磁盘文件或者数据库，或者你想为记录额外的信息。这样的场景你就需要知道如何修改默认的日志记录">
-<meta name="twitter:image" content="https://github.com/bluetianx/2019/04/06/Asp-Net-core-log/1.png">
+<meta name="twitter:title" content="net core 的Generic Host 之Generic Host Builder">
+<meta name="twitter:description" content="通用Host(Generic Host) 与 web Host 不同的地方就是通用Host解耦了Http请求管道，使得通用Host拥有更广的应用场景。比如：消息收发、后台任务以及其他非http的工作负载。这些场景都可以通过使用通用Host拥有横切（Cross-cutting）的能力，比如：配置、依赖注入和日志记录。">
+<meta name="twitter:image" content="https://github.com/bluetianx/2019/05/18/generichost/a.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -60,7 +60,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>自定义Asp.net core——日志记录 | Hello,晓青</title>
+<title>net core 的Generic Host 之Generic Host Builder | Hello,晓青</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -275,11 +275,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-Asp-Net-core-log" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-generichost" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/06/Asp-Net-core-log/" class="article-date">
-      <time datetime="2019-04-06T14:13:27.000Z" itemprop="datePublished">2019-04-06</time>
+      <a href="/2019/05/18/generichost/" class="article-date">
+      <time datetime="2019-05-18T02:44:19.000Z" itemprop="datePublished">2019-05-18</time>
 </a>
 
 
@@ -294,7 +294,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      自定义Asp.net core——日志记录
+      net core 的Generic Host 之Generic Host Builder
     </h1>
   
 
@@ -302,14 +302,10 @@
       
       <div class="article-info article-info-post">
         
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Asp-net-Core/">Asp.net Core</a>
-    </div>
-
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ASP-NET-Core-Log/">ASP.NET Core Log</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Net-Core-Generic-Host/">Net Core Generic Host</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -319,19 +315,33 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文我将演示如何定制日志记录。默认的日志记录仅仅向控制台或者debug窗口输出日志，这样可以满足一些情况，但是你可能还需要把日志记录到一个磁盘文件或者数据库，或者你想为记录额外的信息。这样的场景你就需要知道如何修改默认的日志记录。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>通用Host(Generic Host) 与 web Host 不同的地方就是通用Host解耦了Http请求管道，使得通用Host拥有更广的应用场景。比如：消息收发、后台任务以及其他非http的工作负载。这些场景都可以通过使用通用Host拥有横切（Cross-cutting）的能力，比如：配置、依赖注入和日志记录。</p>
 <hr>
-<h1 id="配置日志记录"><a href="#配置日志记录" class="headerlink" title="配置日志记录"></a>配置日志记录</h1><p>在asp.net core 2.0以前的版本，日志记录是在Startup.cs中，从2.0开始startup.cs被简化，并且把大量的配置代码转移到了webhostBuider中（3.0 是CreateDefaultBuilder）。同样日志记录配置也被转移到了该地方。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Program</span><br><span class="line">    &#123;</span><br><span class="line">        public static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            CreateHostBuilder(args).Build().Run();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public static IHostBuilder CreateHostBuilder(string[] args) =&gt;</span><br><span class="line">            Host.CreateDefaultBuilder(args)</span><br><span class="line">                .ConfigureWebHostDefaults(webBuilder =&gt; &#123; webBuilder.UseStartup&lt;Startup&gt;(); &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>在asp.net core 中你几乎可以修改所有的东西。所以你也能够定制日志记录。IHostBuilder有很多可以覆盖默认行为的扩展方法。我们需要用ConfigureLogging方法去覆盖日志记录的默认逻辑。下面在CreateDefaultBuilder插入的代码演示了如何配置日志记录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Host.CreateDefaultBuilder(args)</span><br><span class="line">                .ConfigureLogging((hostingContext, logging) =&gt;</span><br><span class="line">                    &#123;</span><br><span class="line">                        logging.AddConfiguration(hostingContext.Configuration.GetSection(&quot;Logging&quot;));</span><br><span class="line">                        logging.AddConsole();</span><br><span class="line">                        logging.AddDebug();</span><br><span class="line">                    &#125;)</span><br><span class="line">                .ConfigureWebHostDefaults(webBuilder =&gt; &#123; webBuilder.UseStartup&lt;Startup&gt;(); &#125;);</span><br></pre></td></tr></table></figure>
-<p>这个方法需要一个获取HostBuilderContext的lambda表达式，HostBuilderContext包含了用于配置日志的hosting context和一个LoggingBuilder。</p>
-<h1 id="创建一个自定义的logger"><a href="#创建一个自定义的logger" class="headerlink" title="创建一个自定义的logger"></a>创建一个自定义的logger</h1><p>为了演示如何自定义logger，我创建一个简单的logger，这个logger能够把指定的日志等级用带颜色的文字输出到控制台。我们创建一个名为ColoredConsoleLogger的类，我们同样写一个LoggerProvider用来增加与创建上面的logger。为了把输出指定的颜色和日志等级，我们还需要增加一个配置类，下面代码包含了上述三部分的具体实现：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">public class ColoredConsoleLoggerConfiguration</span><br><span class="line">    &#123;</span><br><span class="line">        public LogLevel LogLevel &#123; get; set; &#125; = LogLevel.Warning;</span><br><span class="line">        public int EventId &#123; get; set; &#125; = 0;</span><br><span class="line">        public ConsoleColor Color &#123; get; set; &#125; = ConsoleColor.Yellow;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public class ColoredConsoleLoggerProvider : ILoggerProvider</span><br><span class="line">    &#123;</span><br><span class="line">        private readonly ColoredConsoleLoggerConfiguration _config;</span><br><span class="line"></span><br><span class="line">        private readonly ConcurrentDictionary&lt;string, ColoredConsoleLogger&gt; _loggers =</span><br><span class="line">            new ConcurrentDictionary&lt;string, ColoredConsoleLogger&gt;();</span><br><span class="line"></span><br><span class="line">        public ColoredConsoleLoggerProvider(ColoredConsoleLoggerConfiguration config)</span><br><span class="line">        &#123;</span><br><span class="line">            _config = config;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public ILogger CreateLogger(string categoryName)</span><br><span class="line">        &#123;</span><br><span class="line">            return _loggers.GetOrAdd(categoryName, name =&gt; new ColoredConsoleLogger(name, _config));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void Dispose()</span><br><span class="line">        &#123;</span><br><span class="line">            _loggers.Clear();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public class ColoredConsoleLogger : ILogger</span><br><span class="line">    &#123;</span><br><span class="line">        private static object _lock = new Object();</span><br><span class="line">        private readonly string _name;</span><br><span class="line">        private readonly ColoredConsoleLoggerConfiguration _config;</span><br><span class="line"></span><br><span class="line">        public ColoredConsoleLogger(string name, ColoredConsoleLoggerConfiguration config)</span><br><span class="line">        &#123;</span><br><span class="line">            _name = name;</span><br><span class="line">            _config = config;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public IDisposable BeginScope&lt;TState&gt;(TState state)</span><br><span class="line">        &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public bool IsEnabled(LogLevel logLevel)</span><br><span class="line">        &#123;</span><br><span class="line">            return logLevel == _config.LogLevel;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void Log&lt;TState&gt;(LogLevel logLevel, EventId eventId, TState state, Exception exception,</span><br><span class="line">            Func&lt;TState, Exception, string&gt; formatter)</span><br><span class="line">        &#123;</span><br><span class="line">            if (!IsEnabled(logLevel))</span><br><span class="line">            &#123;</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            lock (_lock)</span><br><span class="line">            &#123;</span><br><span class="line">                if (_config.EventId == 0 || _config.EventId == eventId.Id)</span><br><span class="line">                &#123;</span><br><span class="line">                    var color = Console.ForegroundColor;</span><br><span class="line">                    Console.ForegroundColor = _config.Color;</span><br><span class="line">                    Console.WriteLine(</span><br><span class="line">                        $&quot;&#123;logLevel.ToString()&#125; - &#123;eventId.Id&#125; - &#123;_name&#125; - &#123;formatter(state, exception)&#125;&quot;);</span><br><span class="line">                    Console.ForegroundColor = color;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>我们需要对具体的控制台输出加上锁，因为控制台不是线程安全的。接下来我们就可以把自定义的logger添加到ConfigureLogging方法中了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">logging.ClearProviders();</span><br><span class="line"></span><br><span class="line">var config = new ColoredConsoleLoggerConfiguration</span><br><span class="line">&#123;</span><br><span class="line">    LogLevel = LogLevel.Information,</span><br><span class="line">    Color = ConsoleColor.Red</span><br><span class="line">&#125;;</span><br><span class="line">logging.AddProvider(new ColoredConsoleLoggerProvider(config));</span><br></pre></td></tr></table></figure>
-<p>我们可以清除之前已经添加的logger provider，然后我们通过AddProvider增加一个指定对应的日志记录设置ColoredConsoleLoggerProvider实例。我们也可以增加其他不同日志记录设置的实例。下图我们就可以看到我们自定义日志记录的效果输出</p>
-<p><img src="1.png" alt="avatar"></p>
+<h1 id="Generic-Host-Builder"><a href="#Generic-Host-Builder" class="headerlink" title="Generic Host Builder"></a>Generic Host Builder</h1><p>Asp net core 2.1版本推出了Generic Host Builder，但它仅仅用在了非http工作负载的场景，Generic Host Builder会在2019年发布的3.0版本中替换掉Web Host Builder。</p>
+<p><img src="a.png" alt="avatar"></p>
+<h1 id="2-x中的Generic-Host-Builder"><a href="#2-x中的Generic-Host-Builder" class="headerlink" title="2.x中的Generic Host Builder"></a>2.x中的Generic Host Builder</h1><p>asp net core 2.1没有使用Generic Host Builder，那么它的使用场景是什么呢？Generic Host Builder的在非http负载的使用场景有消息收发、后台任务等。<br>HostBuilder位于 Microsoft.Extensions.Hosting 命名空间下，实现了IHostBUilder接口。Net core 应用在Main()中最简单的用法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public static async Task Main(string[] args)</span><br><span class="line">&#123;</span><br><span class="line">   var host = new HostBuilder()</span><br><span class="line">      .Build(); </span><br><span class="line"></span><br><span class="line">   await host.RunAsync();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Build()方法是初始化host实例，它仅仅能被调用一次，在Build()方法执行前调用ConfigureServices()方法可以用来配置host。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var host = new HostBuilder()</span><br><span class="line">   .ConfigureServices((hostContext, services) =&gt;</span><br><span class="line">   &#123;</span><br><span class="line">      services.Configure&lt;HostOptions&gt;(option =&gt;</span><br><span class="line">      &#123;</span><br><span class="line">         // option.SomeProperty = ...</span><br><span class="line">      &#125;);</span><br><span class="line">   &#125;)</span><br><span class="line">   .Build();</span><br></pre></td></tr></table></figure>
+<p>ConfigureServices((hostContext, services) 方法有一个HostBuilderContext参数和一个依赖注入的IServiceCollection参数。你也可以通过调用Configure()设置Host的其他设置，当前HostOptions对象只有一个Shutdown Timeout 属性。<br>你可以在<a href="https://github.com/aspnet/Docs/blob/master/aspnetcore/fundamentals/host/generic-host/samples/2.x/GenericHostSample/Program.cs">官方示例</a>看到更多的配置，下面是一个其中的代码片段：</p>
+<p>Host 配置部分</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.ConfigureHostConfiguration(configHost =&gt;</span><br><span class="line">&#123;</span><br><span class="line">   configHost.SetBasePath(Directory.GetCurrentDirectory());</span><br><span class="line">   configHost.AddJsonFile(&quot;hostsettings.json&quot;, optional: true);</span><br><span class="line">   configHost.AddEnvironmentVariables(prefix: &quot;PREFIX_&quot;);</span><br><span class="line">   configHost.AddCommandLine(args);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>应用配置部分</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.ConfigureAppConfiguration((hostContext, configApp) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">   configApp.AddJsonFile(&quot;appsettings.json&quot;, optional: true);</span><br><span class="line">   configApp.AddJsonFile(</span><br><span class="line">      $&quot;appsettings.&#123;hostContext.HostingEnvironment.EnvironmentName&#125;.json&quot;, </span><br><span class="line">      optional: true);</span><br><span class="line">   configApp.AddEnvironmentVariables(prefix: &quot;PREFIX_&quot;);</span><br><span class="line">   configApp.AddCommandLine(args);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>依赖注入代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.ConfigureServices((hostContext, services) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">   services.AddHostedService&lt;LifetimeEventsHostedService&gt;();</span><br><span class="line">   services.AddHostedService&lt;TimedHostedService&gt;();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>日志配置代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.ConfigureLogging((hostContext, configLogging) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">   configLogging.AddConsole();</span><br><span class="line">   configLogging.AddDebug();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="3-0web应用中的Generic-Host-Builder"><a href="#3-0web应用中的Generic-Host-Builder" class="headerlink" title="3.0web应用中的Generic Host Builder"></a>3.0web应用中的Generic Host Builder</h1><p>Asp net core 3.0 中使用Generic Host Builder 替换 Web Host Builder，net core 3.0 web 应用在Main函数中简单的使用方式代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public static void Main(string[] args)</span><br><span class="line">&#123;</span><br><span class="line">   CreateHostBuilder(args)</span><br><span class="line">      .Build()</span><br><span class="line">      .Run();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static IHostBuilder CreateHostBuilder(string[] args) =&gt;</span><br><span class="line">   Host.CreateDefaultBuilder(args)</span><br><span class="line">      ConfigureWebHostDefaults(webBuilder =&gt;</span><br><span class="line">      &#123;</span><br><span class="line">         webBuilder.UseStartup&lt;Startup&gt;();</span><br><span class="line">      &#125;);</span><br></pre></td></tr></table></figure>
+<p>3.0版本中的CreateHostBuilder方法与2.x版本的 CreateWebHostBuilder() 方法很相似，二者最大的不同就是WebHost.CreateDefaultBuilder() 被替换成 Host.CreateDefaultBuilder()，<br>还有一个不同的地方就是 Host.CreateDefaultBuilder()方法，因为新版本的host builder是一个通用的host builder，这样就要通过嗲用  CreateDefaultBuilder()方法来构建一个web app host。</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>未来我们需要知道：</p>
+<ul>
+<li>WebHostBuilder在未来将会被弃用</li>
+<li>IWebHostBuilder接口将会被保留</li>
+<li>你不能在Startup类里面注入任何服务，IHostingEnvironment and IConfiguration除外</li>
+</ul>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0" target="_blank" rel="noopener">官方文档</a><br><a href="https://wakeupandcode.com/generic-host-builder-in-asp-net-core/" target="_blank" rel="noopener">Generic Host Builder in ASP .NET Core</a></p>
 
       
     </div>
@@ -343,16 +353,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/05/18/generichost/">
-                    net core 的Generic Host 之Generic Host Builder
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/11/18/cross-platformTimeZones/">
-                    .Net Core与跨平台时区
+                <a href="/2019/04/06/Asp-Net-core-log/">
+                    自定义Asp.net core——日志记录
                 </a>
             </div>
         
@@ -364,7 +368,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置日志记录"><span class="toc-number">2.</span> <span class="toc-text">配置日志记录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#创建一个自定义的logger"><span class="toc-number">3.</span> <span class="toc-text">创建一个自定义的logger</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Generic-Host-Builder"><span class="toc-number">2.</span> <span class="toc-text">Generic Host Builder</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-x中的Generic-Host-Builder"><span class="toc-number">3.</span> <span class="toc-text">2.x中的Generic Host Builder</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-0web应用中的Generic-Host-Builder"><span class="toc-number">4.</span> <span class="toc-text">3.0web应用中的Generic Host Builder</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#最后"><span class="toc-number">5.</span> <span class="toc-text">最后</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考链接"><span class="toc-number">6.</span> <span class="toc-text">参考链接</span></a></li></ol>
         
     </div>
     <style>
@@ -400,7 +404,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"自定义Asp.net core——日志记录　| Hello,晓青　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"net core 的Generic Host 之Generic Host Builder　| Hello,晓青　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -416,7 +420,7 @@
     
       <!--<div class="duoshuo" id="comments">
     <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2019/04/06/Asp-Net-core-log/" data-title="自定义Asp.net core——日志记录" data-url="https://github.com/bluetianx/2019/04/06/Asp-Net-core-log/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/05/18/generichost/" data-title="net core 的Generic Host 之Generic Host Builder" data-url="https://github.com/bluetianx/2019/05/18/generichost/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -457,15 +461,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/05/18/generichost/" title="上一篇: net core 的Generic Host 之Generic Host Builder">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/11/18/cross-platformTimeZones/" title="下一篇: .Net Core与跨平台时区">
+            <a href="/2019/04/06/Asp-Net-core-log/" title="下一篇: 自定义Asp.net core——日志记录">
                 <i class="fa fa-angle-right"></i>
             </a>
         
