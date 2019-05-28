@@ -15,16 +15,18 @@
 
 
 
-<meta name="description" content="寻访不觉醉流霞">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hello,晓青">
-<meta property="og:url" content="https://github.com/bluetianx/tags/Net-Core-Generic-Host/index.html">
+<meta name="description" content="centos7离线安装rabitmq v3.7.15">
+<meta name="keywords" content="rabbitmq">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centos7离线安装rabbitmq">
+<meta property="og:url" content="https://github.com/bluetianx/2019/05/28/rabbitmqInstall/index.html">
 <meta property="og:site_name" content="Hello,晓青">
-<meta property="og:description" content="寻访不觉醉流霞">
+<meta property="og:description" content="centos7离线安装rabitmq v3.7.15">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-28T15:47:49.166Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello,晓青">
-<meta name="twitter:description" content="寻访不觉醉流霞">
+<meta name="twitter:title" content="centos7离线安装rabbitmq">
+<meta name="twitter:description" content="centos7离线安装rabitmq v3.7.15">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -56,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Tag: Net Core Generic Host | Hello,晓青</title>
+<title>centos7离线安装rabbitmq | Hello,晓青</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -66,9 +68,9 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
+        isPost: true,
         isArchive: false,
-        isTag: true,
+        isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
         scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
@@ -271,56 +273,220 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-rabbitmqInstall" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2019/05/18/generichost/" class="archive-article-date">
-      <time datetime="2019-05-18T02:44:19.000Z" itemprop="datePublished">05-18</time>
+    <div class="article-meta">
+      <a href="/2019/05/28/rabbitmqInstall/" class="article-date">
+      <time datetime="2019-05-28T14:32:56.000Z" itemprop="datePublished">2019-05-28</time>
 </a>
 
 
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/18/generichost/">net core 的Generic Host 之Generic Host Builder</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      centos7离线安装rabbitmq
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 
-          
+        
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Net-Core-Generic-Host/">Net Core Generic Host</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rabbitmq/">rabbitmq</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ul>
+<li>一台centos7的机器</li>
+<li><a href="https://github.com/rabbitmq/erlang-rpm/releases/download/v21.3.8.2/erlang-21.3.8.2-1.el7.x86_64.rpm">erlang-21.3.8.2</a></li>
+<li><a href="https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.7.15/rabbitmq-server-3.7.15-1.el7.noarch.rpm">RabbitMQ 3.7.15</a></li>
+<li><a href="https://centos.pkgs.org/7/centos-x86_64/socat-1.7.3.2-2.el7.x86_64.rpm.html" target="_blank" rel="noopener">socat-1.7.3.2-2.el7.x86_64.rpm</a></li>
+</ul>
+<h1 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h1><ol>
+<li>登录centos ，把上面的三个文件包复制到该系统下，打开命令行终端，切换到root账户</li>
+<li>安装erlang：yum install ./erlang-21.3.8.2-1.el7.x86_64.rpm</li>
+<li>查看erlang是否安装正确：执行 erl 命令查看安装的版本，输出示例如下：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Erlang/OTP 21 [erts-10.3.5.1] [source] [64-bit] [smp:1:1] [ds:1:1:10] [async-threads:1] [hipe]</span><br><span class="line"></span><br><span class="line">Eshell V10.3.5.1  (abort with ^G)</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>安装rabbitmq：执行命令：yum install ./rabbitmq-server-3.7.15-1.el7.noarch.rpm</li>
+<li>执行命令： yum install ./rabbitmq-server-3.7.15-1.el7.noarch.rpm  激活rabbitmq daemon 进程</li>
+<li>启动rabbitmq，执行命令：/sbin/service rabbitmq-server start</li>
+</ol>
+<h2 id="安装-rabbitmq常见故障"><a href="#安装-rabbitmq常见故障" class="headerlink" title="安装 rabbitmq常见故障"></a>安装 rabbitmq常见故障</h2><ul>
+<li><p>问题：出现类似：socat-1.7.3.2-2.el7.x86_64: [Errno 256] No more mirrors to try 的错误<br>原因：系统没有安装 socat<br>解决方案：下载<a href="https://centos.pkgs.org/7/centos-x86_64/socat-1.7.3.2-2.el7.x86_64.rpm.html" target="_blank" rel="noopener">socat-1.7.3.2-2.el7.x86_64.rpm</a>，执行命令：yum install ./socat-1.7.3.2-2.el7.x86_64.rpm，</p>
+</li>
+<li><p>问题：出现类似：Error unpacking rpm package rabbitmq-server-3.7.15-1.el7.noarch<br>error: unpacking of archive failed on file 的错误<br>原因：复制rabbitmq rpm包到centos 系统出现错误，<br>解决方案：更换其他复制的方式</p>
+</li>
+</ul>
+<h2 id="简单配置rabbitmq"><a href="#简单配置rabbitmq" class="headerlink" title="简单配置rabbitmq"></a>简单配置rabbitmq</h2><ul>
+<li>启用webUI插件：执行命令 rabbitmq-plugins enable rabbitmq_management<br>可以在本机浏览器输入 <a href="http://localhost:15672" target="_blank" rel="noopener">http://localhost:15672</a> 访问rabbitmq主页，账户 guest 密码 guest</li>
+<li>添加自定义用户名为 “admin” 以及密码为 “123456” 的管理员账号： 执行命令 rabbitmqctl add_user admin 123456</li>
+<li>给admin账号设置为管理员：执行命令 rabbitmqctl set_user_tags admin administrator</li>
+<li>给admin账号授权：执行命令 rabbitmqctl set_permissions -p / admin  “.<em>“ “.</em>“ “.*”</li>
+<li>查看admin账户的权限： 执行命令 rabbitmqctl list_user_permissions admin</li>
+</ul>
+<h2 id="日志文件以及配置文件的位置"><a href="#日志文件以及配置文件的位置" class="headerlink" title="日志文件以及配置文件的位置"></a>日志文件以及配置文件的位置</h2><ul>
+<li>日志文件在：$RABBITMQ_LOG_BASE/$RABBITMQ_NODENAME.log下面，一般 $RABBITMQ_LOG_BASE=$RABBITMQ_HOME/var/log/rabbitmq。一般默认日志文件会在/var/log/rabbitmq文件下<br>该日志文件的开始部分记录了rabbitmq 启动时查找相关文件的记录，例如：</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">node           : rabbit@macvm</span><br><span class="line">home dir       : /var/lib/rabbitmq</span><br><span class="line">config file(s) : (none)</span><br><span class="line">cookie hash    : jzIB5AXnFFYHzF/o4qC9sw==</span><br><span class="line">log(s)         : /var/log/rabbitmq/rabbit@macvm.log</span><br><span class="line">    	       : /var/log/rabbitmq/rabbit@macvm_upgrade.log</span><br><span class="line">database dir   : /var/lib/rabbitmq/mnesia/rabbit@macvm</span><br></pre></td></tr></table></figure>
+<p>日志记录显示了各个系统文件对应的位置</p>
 
+      
+    </div>
+    
+  </div>
+  
     
 
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/05/18/generichost/">
+                    net core 的Generic Host 之Generic Host Builder
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#准备工作"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#开始安装"><span class="toc-number">2.</span> <span class="toc-text">开始安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-rabbitmq常见故障"><span class="toc-number">2.1.</span> <span class="toc-text">安装 rabbitmq常见故障</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单配置rabbitmq"><span class="toc-number">2.2.</span> <span class="toc-text">简单配置rabbitmq</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#日志文件以及配置文件的位置"><span class="toc-number">2.3.</span> <span class="toc-text">日志文件以及配置文件的位置</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"centos7离线安装rabbitmq　| Hello,晓青　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <!--<div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2019/05/28/rabbitmqInstall/" data-title="centos7离线安装rabbitmq" data-url="https://github.com/bluetianx/2019/05/28/rabbitmqInstall/"></div>
+    <script>
+        var duoshuoQuery = {short_name:""};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>-->
+<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNTUyMS8xMjA1Nw==">
+    <script type="text/javascript">
+      (function (d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+  
+        if (typeof LivereTower === 'function') { return; }
+  
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+  
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+  </div>
+  <!-- City版安装代码已完成 -->
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/05/18/generichost/" title="下一篇: net core 的Generic Host 之Generic Host Builder">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/05/28/rabbitmqInstall/">centos7离线安装rabbitmq</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/18/generichost/">net core 的Generic Host 之Generic Host Builder</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/06/Asp-Net-core-log/">自定义Asp.net core——日志记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/18/cross-platformTimeZones/">.Net Core与跨平台时区</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/18/Asp-netCoreSignalR/">横向扩展你的ASP.NET Core SignalR 应用（翻译）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/22/Identity5/">深入理解Aspnet Core之Identity(5)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/16/Identity4/">深入理解Aspnet Core之Identity(4)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/07/Identity3/">深入理解Aspnet Core之Identity(3)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/04/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
